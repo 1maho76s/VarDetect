@@ -1,0 +1,1586 @@
+rootname: , expr: , kind: TranslationUnitDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: BuiltinType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: BuiltinType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: PointerType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: BuiltinType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ConstantArrayType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: "sched_list.h"
+#include "ase_str.h"
+#include "ase_io.h"
+#include "ase_dlt_factory.h"
+#include "ase_buf.h"
+#include "ase_sock.h"
+#include "ase_port_factory.h"
+#include "ase_aging.h"
+#include "ase_net_port.h"
+#include "ase_stat.h"
+#include "ase_sess_status.h"
+#include "ase_tcp_port_sock_ops.h"
+#include "ase_framework_builder.h"
+#include "ase_client.h"
+#include ", kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _str.h"
+#include "ase_io., kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ., kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ., kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_dlt_factory.h"
+#inclu, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: u, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: u, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: "
+#include "ase_sock.h"
+#, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: port_factory.h"
+#include, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #include "ase_net_port.h, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: h, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: h, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: se_stat.h"
+#include "as, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #include "ase_tcp_port_s, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: s, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: s, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: nclude "ase_fram, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: m, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: m, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ude "ase_client.h"
+#includ, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ud, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ud, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: d.h"
+#include "ase_sys_dfx_frame.h"
+#include "ase_sys_dfx_traffic.h"
+#include "ase_timer_list.h"
+#include "ase_perf_analyse.h"
+#include "ase_forward_cfg.h"
+#include "ase_mbuf_monitor.h"
+#include "ase_pfd.h"
+#include "ase_rtcm.h"
+#include "ase_p, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: frame.h"
+#inc, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: sys_dfx_traff, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: lude "ase_timer_list, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: de "ase_perf_analy, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: lude "ase_forward_cfg., kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e "ase_mbuf_monitor.h, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e "ase_mbuf_monitor.h"
+#include "ase_pfd, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e "ase_mbuf_monitor.h"
+#include "ase_pfd.h"
+#include "ase_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e "ase_mbuf_monitor.h"
+#include "ase_pfd.h"
+#include "ase_rtcm.h"
+#includ, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ection_id.h"
+#include "ase_sys_dfx_frame.h"
+#include "ase_sys_dfx_traffic.h"
+#include "ase_timer_list.h"
+#include "ase_perf_analyse.h"
+#include "ase_forward_cfg.h"
+#include "ase_mbuf_monitor.h"
+#include "ase_pfd.h"
+#include "ase_rtcm.h"
+#include "ase_perf_session.h", kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ElaboratedType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: frame_kpi.h"
+#include "bitfield_struct.h"
+
+struct ase_tcp_port_mem_ctx {
+    struct ase_pmem pmem;
+    struct ase_mmem mmem, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #include "bitfield, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: d, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: d, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_tcp_p, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: p, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: p, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: x {
+    struct, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_mmem m, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: m, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: m, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: de "ase_frame_kpi.h"
+#include "bitfield_struct.h"
+
+struct ase_tcp_port_mem_ctx {
+    struct ase_pmem pmem;
+    struct ase_mmem mmem;
+};
+
+struct, kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ElaboratedType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: id ase_tcp_port_free(struct ase_tcp_port *tp)
+{
+    if (tp->se != 0) {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_C, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: t ase_tcp_port *tp)
+{, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: >se != 0) {
+        ASE, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: E, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: E, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: O(tp->sess_ctx, AS, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _ctx;
+void ase_tcp_port_free(struct ase_tcp_port *tp)
+{
+    if (tp->se != 0) {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP, kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ElaboratedType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: %d, pkt_list(%d)",
+            get_protol_str(tp), tp->se->fd, tp->rcv_bytes, tp->snd_bytes, List_Len(&tp->pkt_list));
+        sched_evt_close(tp->se);
+        ase_dfx_cnt_inc(ASE_DFX_CLOSE);
+        tp->se = NULL;
+    }
+    if (tp->sess_ctx != NULL) {
+        ase_str_mon_clean_sess_pkts_timeout(tp->sess_ctx->sess_id, tp->client);
+        ase_sess_ctx_put(tp->sess_ctx, ase_sess_holder_net);
+        tp->sess_ctx = NULL;
+    }
+
+    set_no_more_check_pkt_drop_on_pt(tp);
+
+    if (tp->caps != NULL) {
+        ase_sess_caps_put(tp->caps);
+        tp->caps = NULL;
+    }
+
+    tcp_port_del_swp_timer(tp);
+    ase_tcp_detach_peer(tp);
+    ase_tcp_port_detach_sinks(tp);
+    tp->drop_bytes += ase_buf_len(&tp->sndbuf);
+    tp->pkt_stat->droped += ase_buf_len(&tp->sndbuf);
+    ase_dfx_cnt_inc(ASE_DFX_DROP_STR, ase_buf_lsstrs(&tp->sndbuf));
+    ase_buf_close(&tp->sndbuf);
+    ase_tcp_stop_flush_ntfy(tp);
+    ase_tcp_del_timeout_list(tp);
+    ase_free(&g_tcp_port_mem_ctx.pmem.mem, tp);
+}
+
+
+void ase_tcp_port_post_event_check(struct ase_tcp_port *tp)
+{
+    enum ase_close_type ct_dn_rcv = 0;
+    enum ase_close_type ct_up_sent = (tp->xclose_state[up] >> ase_close_state_sent) & ase_close_mask;
+
+    // upper layer sents FIN, check if all data flushed, if yes, send FIN out
+    if (ase_tcp_up_rcv_not_end_dn(tp, ase_close_type_read) &&
+        (is_dn_port_close_write(tp) || tp->sndbuf.len == 0)) {
+        // if nothing to be sent and tp layer has closed read, then fnd FIN out
+        set_dn_port_close_read_sent(tp);
+        ase_tcp_port_shutdown_write(tp);
+
+        /* Fast path: if we sent FIN and have recv FIN, then mark close */
+        if (is_dn_port_close_read_rcvd(tp)) {
+            tp->close_write_by_app = true;
+            set_dn_port_close_write_rcvd(tp);
+        }
+    }
+
+    if (is_dn_port_close_read_rcvd(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_closed(tp)) {
+        // Fast path: read&wri, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: get_protol_str(tp, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp->rcv_bytes, t, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp->rcv_bytes, tp->snd, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: st_Len(&tp->pkt_list));, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: evt_close(tp->se);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: nt_inc(ASE_DFX_CLOSE);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: = NULL;
+    }, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: = NULL;
+    }
+    if (tp, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: LL) {
+        ase_str_m, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: != NULL) {
+        ase_str_mon_clean, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: out(tp->sess_ct, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: out(tp->sess_ctx->, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: p->client);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tx_put(tp->ses, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tx_put(tp->sess_ctx, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _holder_net);, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _holder_net);
+        tp->, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: NULL;
+    }
+
+    set_, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: NULL;
+    }
+
+    set_no_more_ch, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: op_on_pt(tp);
+
+    if (tp->caps != NULL) {
+        ase_sess_caps_put(tp->caps);
+        tp->caps = NULL;
+    }
+
+    tcp_po, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: (tp->caps != NULL) {, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _caps_put(tp->caps, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: >caps = NULL;
+    }, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: op_on_pt(tp);
+
+    if (tp->caps != NULL) {
+        ase_sess_caps_put(tp->caps);
+        tp->caps = NULL;
+    }
+
+    tcp_port_de, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: r(tp);
+    ase_t, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: peer(tp);
+    ase_tc, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: peer(tp);
+    ase_tcp_port_de, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: (tp);
+    tp->dr, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: (tp);
+    tp->drop_b, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e_buf_len(&tp-, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e_buf_len(&tp->sndbuf, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: stat->droped += as, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: &tp->sndbuf);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: t_inc(ASE_DFX_DROP_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: uf_lsstrs(&tp->sndb, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_buf_clos, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: buf);
+    ase_tc, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: sh_ntfy(tp);
+    a, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _timeout_list(tp), kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: &g_tcp_port_mem_ctx.pme, kind: EnumDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: &g_tcp_port_mem_ctx.pmem.mem,, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: void ase_tcp_port_pos, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: void ase_tcp_port_post_event_check(s, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tcp_port *tp)
+{
+    enum ase_close_type ct, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: enum ase_, kind: EnumDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: enum ase_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: up_sent = (tp->x, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ] >> ase_close_state_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ose_mask;, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ayer sents F, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ll data flushed, if, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: out
+    if, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: v_not_end_dn(tp, ase, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ad) &&
+        (is_dn_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: te(tp) || tp->sn, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ) {
+        // if not, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: t and tp layer has, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: hen fnd FIN out, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _close_read_sent(tp);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: cp_port_shutdown_write, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: /* Fast path: if we se, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e recv FIN, then mark, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: if (is_dn_port_cl, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp)) {, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: write_by_app = tru, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: set_dn_port_close_wri, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: }
+    }
+
+    if, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: lose_read_rcvd(tp) && is_dn, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: vd(tp) &&
+        !i, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ed(tp)) {
+        // Fast path: r, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: // We should delete any epoll even if using socket here.
+        set_dn_port_closed(tp);, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e should delete any epol, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: g socket here., kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: rt_closed(tp);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: socket.
+        // We should delete any epoll even if using socket here.
+        set_dn_port_closed(tp);
+        // th, kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ElaboratedType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: "
+#include "ase_mem, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #include "ase_pmem.h"
+#include "ase_mmem.h"
+#include "sched_task.h"
+#include "sched_list.h"
+#include "ase_str.h"
+#include "ase_io.h"
+#include "ase_dlt_factory.h"
+#include "ase_buf.h"
+#include "ase_sock.h"
+#inclu, kind: EnumDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: de "ase_mmem.h"
+#in, kind: EnumConstantDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: "sched_list.h"
+#inc, kind: EnumConstantDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _dlt_factory.h"
+#i, kind: EnumConstantDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: "ase_port_factory.h"
+#include "ase_aging.h"
+#include "ase_net_port.h"
+#include "ase_stat.h"
+#include "ase_sess_status.h"
+#include "ase_tcp_port_sock_ops.h"
+#include "ase_framework_builder.h"
+#include "ase_client.h"
+#include "ase_dbg_trace.h"
+#include "ase_connection_id.h"
+#include "ase_sys_dfx_frame.h"
+#include "ase_sys_dfx_traffic.h"
+#include "ase_timer_list.h"
+#include "ase_perf_analyse.h"
+#include "ase_forward_cfg.h"
+#include "ase_mbuf_monitor.h"
+#include "ase_pfd.h"
+#include "ase_rtcm.h"
+#include "ase_perf_session.h"
+#include "ase_tproxy_str.h"
+#include "ase_frame_kpi.h"
+#include "bitfield_struct.h"
+
+struct ase_tcp_port_mem_ctx {
+    struct ase_pmem pmem;
+    struct ase_mmem mmem;
+};
+
+struct ase_tcp_port_mem_ctx g_tcp_port_mem_ctx;
+void ase_tcp_port_free(struct ase_tcp_port *tp)
+{
+    if (tp->se != 0) {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "free %s port(%d) rcv %d snd %, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: "ase_aging.h"
+#include "ase_net_port.h"
+#includ, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _stat.h"
+#include "ase_sess_status.h"
+#include "ase_tcp_port_sock_ops.h"
+#, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e "ase_framework_builder.h"
+#include "ase_client.h"
+#inclu, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e_dbg_trace.h"
+#include "ase_connection_id.h"
+#include "ase_sys_dfx_frame.h"
+#include "ase, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: fx_traffic.h"
+#include "ase_timer_list.h"
+#include, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _monitor.h"
+#include "ase_pfd.h"
+#include "ase_r, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #include "ase_perf_session.h"
+#include "ase_tpr, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: r.h"
+#include "ase_frame_kpi.h"
+#include, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_tcp_port_mem_ctx g_tcp_port_mem_ctx;
+void ase, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ort_free(struct ase_tcp_port *tp)
+{
+    if (tp, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: = 0) {
+        ASE_TRACE_INFO(tp->sess_c, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: E_CATE_TCP_PORT, "free %s port(%d) rcv %d sn, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: pkt_list(%d)",
+            get_protol_str(tp), tp->se->fd, tp->rcv_bytes, tp->s, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: get_proto, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp), tp->se->fd, tp->rcv_bytes, tp, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: bytes, List_Len(&tp->pkt_list));
+        sched_evt_close(tp->se);
+        ase_dfx_cnt_inc(ASE_DFX_CLOSE);, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp->se = NULL;
+    }
+    if (tp->sess_ctx != NULL) {
+        ase_str_mon_clean_sess_pkts_timeout(tp->sess_ctx->sess_id, tp->client);
+        ase_, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ss_ctx_put(tp->sess_ctx, ase_sess_holder_net);
+        tp->sess_ctx = NULL;
+    }
+
+    set_no_more_check_pkt_drop_on_pt(tp);, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: de "sched_list.h"
+#include "ase_str.h"
+#include "ase_io.h"
+#include "ase_dlt_factory.h"
+#include "ase_buf.h"
+#include "ase_sock.h"
+#include "ase_port_factory.h"
+#include "ase_aging.h"
+#include "ase_net_port.h"
+#include "ase_stat.h"
+#include "ase_sess_status.h"
+#include "ase_tcp_port_sock_ops.h"
+#include "ase_framework_builder.h"
+#include "ase_client.h"
+#include "ase_dbg_trace.h"
+#include "ase_connection_id.h"
+#include "ase_sys_dfx_frame.h"
+#include "ase_sys_dfx_traffic.h"
+#include "ase_timer_list.h"
+#include "ase_perf_analyse.h"
+#include "ase_forward_cfg.h"
+#include "ase_mbuf_monit, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_str.h"
+#include "ase_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: include "ase_buf.h"
+#incl, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: l, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: l, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: factory.h"
+#include "ase_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: "
+#include "ase_stat.h"
+#, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ude "ase_tcp_port_sock_op, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: p, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: p, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: .h"
+#include "ase_clien, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_connection_id.h"
+#inc, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: c, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: c, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: de "ase_sys_dfx_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: lude "ase_forward_cfg.h"
+#, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: #, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ude "ase_pfd.h"
+#include "ase_rtcm.h"
+#include "ase_perf_session.h"
+#include "ase_tproxy_str.h"
+#include "ase_frame_kpi.h"
+#include "bitfield_struct.h"
+
+struct ase_tcp_port_mem_ctx {
+    struct ase_pmem pmem;
+    struct ase_, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: se_rtcm.h"
+#i, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: "ase_perf_se, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: h"
+#include "ase_tpr, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: r.h"
+#include "ase, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _kpi.h"
+#include "bitf, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: truct.h"
+
+struct ase_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: truct.h"
+
+struct ase_tcp_port_mem_ctx {, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: truct.h"
+
+struct ase_tcp_port_mem_ctx {
+    struct ase_pme, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: truct.h"
+
+struct ase_tcp_port_mem_ctx {
+    struct ase_pmem pmem;
+    str, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: h"
+#include "ase_pfd.h"
+#include "ase_rtcm.h"
+#include "ase_perf_session.h"
+#include "ase_tproxy_str.h"
+#include "ase_frame_kpi.h"
+#include "bitfield_struct.h"
+
+struct ase_tcp_port_mem_ctx {
+    struct ase_pmem pmem;
+    struct ase_mmem mmem;
+};, kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ElaboratedType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_tcp_port *tp)
+{
+    if (tp->se != 0) {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "free %s port(%d) rcv %d sn, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: *tp)
+{
+    if (tp-, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: -, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: -, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: 0) {
+        ASE_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: INFO(tp->sess_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: %s port(%d) rcv %d, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: d, kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: d, kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: (struct ase_tcp_port *tp)
+{
+    if (tp->se != 0) {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "free %s port(%d) rcv %d snd %d, pkt_lis, kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ElaboratedType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp->snd_bytes, List_Len(&tp->pkt_list));
+        sched_evt_close(tp->se);
+        ase_dfx_cnt_inc(ASE_DFX_CLOSE);
+        tp-, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: p->pkt_list));, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: evt_close(tp->se);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ConstantExpr, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: IntegerLiteral, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e_dfx_cnt_inc(ASE_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _bytes, tp->snd_bytes, List_Len(&tp->pkt_list));
+        sched_evt_close(tp->se);
+        ase_dfx_cnt_inc(ASE_DFX_CLOSE);
+        tp->se = N, kind: TypedefDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: ElaboratedType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , kind: RecordType, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_str_mon_clean_sess_pkts_timeout(tp->sess_ctx->sess_id, tp->client);
+        ase_sess_ctx_put(tp->sess_ctx, ase_sess_holder_net);
+        tp->sess_ctx = NULL;
+    }
+
+    set_no_more_check_pkt_drop_on_pt(tp);
+
+    if (tp->caps != NULL) {
+        ase_sess_caps_put(tp->caps);
+        tp->caps = NULL;
+    }
+
+    tcp_port_del_swp_timer(tp);
+    ase_tcp_detach_peer(tp);
+    ase_tcp_port_detach_sinks(tp);
+    tp->drop_bytes += ase_buf_len(&tp->sndbuf);
+    tp->pkt_stat->droped += ase_buf_len(&tp->sndbuf);
+    ase_dfx_cnt_inc(ASE_DFX_DROP_STR, ase_buf_lsstrs(&tp->sndbuf));
+    ase_buf_close(&tp->sndbuf);
+    ase_tcp_stop_flush_ntfy(tp);
+    ase_tcp_del_timeout_list(tp);
+    ase_free(&g_tcp_port_mem_ctx.pmem.mem, tp);
+}
+
+
+void ase_tcp_port_post_event_check(struct ase_tcp_port *tp)
+{
+    enum ase_close_type ct_dn_rcv = 0;
+    enum ase_close_type ct_up_sent = (tp->xclose_state[up] >> ase_close_state_sent) & ase_close_mask;
+
+    // upper layer sents FIN, check if all data flushed, if yes, send FIN out
+    if (ase_tcp_up_rcv_not_end_dn(tp, ase_close_type_read) &&
+        (is_dn_port_close_write(tp) || tp->sndbuf.len == 0)) {
+        // if nothing to be sent and tp layer has closed read, then fnd FIN out
+        set_dn_port_close_read_sent(tp);
+        ase_tcp_port_shutdown_write(tp);
+
+        /* Fast path: if we sent FIN and have recv FIN, then mark close */
+        if (is_dn_port_close_read_rcvd(tp)) {
+            tp->close_write_by_app = true;
+            set_dn_port_close_write_rcvd(tp);
+        }
+    }
+
+    if (is_dn_port_close_read_rcvd(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_closed(tp)) {
+        // Fast path: read&write close ha, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ess_pkts_timeout(tp->se, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: >sess_id, tp->client);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_sess_ctx_put(tp->sess, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_sess_holder_net);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ->sess_ctx = NULL;
+    }, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: no_more_check_pkt_drop_o, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: p);
+
+    if (tp->caps != NULL) {, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _sess_caps_put(tp-, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ;
+        tp->caps =, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: }
+
+    tcp_por, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: swp_timer(tp);
+    ase_tcp, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: h_peer(tp);
+    ase_tcp_port_det, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: nks(tp);
+    tp->drop_bytes += ase_buf_len(&tp->sndbuf);
+    tp->pkt_stat->droped += ase_buf_len(&tp->sndb, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: drop_bytes += ase_buf_le, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: buf);
+    tp->pkt_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ed += ase_buf_len(&t, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: nks(tp);
+    tp->drop_bytes += ase_buf_len(&tp->sndbuf);
+    tp->pkt_stat->droped += ase_buf_len(&tp->sndbuf);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e_dfx_cnt_inc(AS, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: DROP_STR, ase_buf_lsstrs(&tp-, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: f));
+    ase_buf_clo, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ->sndbuf);
+    ase_tc, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: flush_ntfy(tp);, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tcp_del_timeout_li, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ;
+    ase_free(&g_t, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: t_mem_ctx.pmem.mem,, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: }
+
+
+void ase, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ort_post_event_c, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: truct ase_tcp_port, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: {
+    enum ase_cl, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: e ct_dn_rcv = 0;
+    enum ase, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _type ct_up_sent = (tp->xclose_state, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: > ase_close_state_sent) & ase_close_mask;, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: upper laye, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: N, check if all, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ed, if yes, send FIN, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: (ase_tcp_u, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: end_dn(tp, a, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ype_read) &&, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: rt_close_wr, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp->sndbuf.len == 0, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: // if nothing to be, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp layer has clo, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: then fnd FIN out, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _port_close_read_se, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ase_tcp_port_sh, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: te(tp);
+
+        /* F, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: if we sent FIN and hav, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: , then mark close */, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: {
+            tp->cl, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: by_app = true;, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: set_dn_port_clos, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: vd(tp);
+        }, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: (is_dn_port_close_read, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: && is_dn_port_write_rcvd(tp, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: !is_dn_port_close, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: // Fast path: read&write c, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: een received from t, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: socket.
+        // We should delete any epoll even if using socket here.
+        set_dn_port_closed(tp);
+        // the socket is dead, del it to avoid unexpected operations
+        ase_tcp_port_set_dummy(tp);, kind: EnumDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: else if (is_dn_port_close_read_rcvd(tp) &&
+               !is_up_port_close_read_sent(tp)) {
+        // peer sends us FIN, but we can still send data to peer
+        tp->se->exp_evts |= ~SCHED_EVT_READ;
+        sched_evt_chg(tp->se);
+    }
+
+    // check read close ack below
+    if (is_dn_port_close_read_sent(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_close_read_ack_rcvd(tp)) {
+        // the upper layer does not want to send data anymore, and the tcp
+        // stack indicates HUP is recv HUP is a safer operation to
+        // we mark close_ack after we recv HUP is a safer operation to
+        // guarantee data in the sendbuf is not lost
+        // https://stackoverflow.com/questions/5299152/tcp-when-is-pollhup-generated
+        // https://stackoverflow.com/questions/8848211/close-socket-directly-after-send-sendbuf
+        set_dn_port_close_read_ack_rcvd(tp);
+    }
+
+    // close, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: d_rcvd(tp) &&
+               !is_up_port_close_, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ent(tp)) {
+        // peer sends us FIN, but we can still send data to pee, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: tp->se->exp_evts |= ~SCHED_EVT_READ;
+        sched_evt, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: p->se);
+    }
+
+    // check read close ack below
+    if (is_dn_port_close_read_sent(tp) &&, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: _port_write_rcvd(tp) &&
+        !is_dn_port_close_r, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: data anymore, and the tcp
+        // stack indi, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: HUP is recv HUP is a safer operation to, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: mark close_ack after we recv HUP is a sa, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ns/5299152/tcp-when-is-pollhup-generated
+        /, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: s://stackoverflow.com/questions/8848211/close-, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: -directly-after-send-sendbuf
+        set, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: rt_close_read_ack_rcvd(tp);
+    }
+
+    // cl, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ite_ack is always sent immediately when we recv close_write from
+    // upper l, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ediately w, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: recv close_write from
+    // uppe, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: r. so do not process it here
+
+    ct_dn_rcv = (tp->xclose_state[dn] >> ase_close_state_recv) & ase_close_mask;, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: if (ct_up_sent | ct_dn_rcv != ct_up_sent) {
+        tp->close_state[tp_ct_up_rcv] |= ct_dn_rcv < ase_close_sent;
+        ase_sink_close(tp->sink, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: ct_dn_rcv);
+    }
+
+    if (is_dn_port_close_write_rcvd(tp) && !ase_buf_empty(&tp->sndbuf)) {
+        // can't send anymore, rele, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_tcp_port_mem_ctx {
+    struct ase_pmem pmem;
+    struct ase_mmem mmem;
+}, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_pmem, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_pmem pmem, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_mmem, kind: RecordDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_mmem mmem, kind: FieldDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_tcp_port_mem_ctx g_tcp_port_mem_ctx, kind: VarDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: void ase_tcp_port_free(struct ase_tcp_port *tp)
+{
+    if (tp->se != 0) {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "free %s port(%d) rcv %d snd %d, pkt_list(%d)",
+            get_protol_str(tp), tp->se->fd, tp->rcv_bytes, tp->snd_bytes, List_Len(&tp->pkt_list));
+        sched_evt_close(tp->se);
+        ase_dfx_cnt_inc(ASE_DFX_CLOSE);
+        tp->se = NULL;
+    }
+    if (tp->sess_ctx != NULL) {
+        ase_str_mon_clean_sess_pkts_timeout(tp->sess_ctx->sess_id, tp->client);
+        ase_sess_ctx_put(tp->sess_ctx, ase_sess_holder_net);
+        tp->sess_ctx = NULL;
+    }
+
+    set_no_more_check_pkt_drop_on_pt(tp);
+
+    if (tp->caps != NULL) {
+        ase_sess_caps_put(tp->caps);
+        tp->caps = NULL;
+    }
+
+    tcp_port_del_swp_timer(tp);
+    ase_tcp_detach_peer(tp);
+    ase_tcp_port_detach_sinks(tp);
+    tp->drop_bytes += ase_buf_len(&tp->sndbuf);
+    tp->pkt_stat->droped += ase_buf_len(&tp->sndbuf);
+    ase_dfx_cnt_inc(ASE_DFX_DROP_STR, ase_buf_lsstrs(&tp->sndbuf));
+    ase_buf_close(&tp->sndbuf);
+    ase_tcp_stop_flush_ntfy(tp);
+    ase_tcp_del_timeout_list(tp);
+    ase_free(&g_tcp_port_mem_ctx.pmem.mem, tp);
+}, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_tcp_port *tp, kind: ParmVarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+    if (tp->se != 0) {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "free %s port(%d) rcv %d snd %d, pkt_list(%d)",
+            get_protol_str(tp), tp->se->fd, tp->rcv_bytes, tp->snd_bytes, List_Len(&tp->pkt_list));
+        sched_evt_close(tp->se);
+        ase_dfx_cnt_inc(ASE_DFX_CLOSE);
+        tp->se = NULL;
+    }
+    if (tp->sess_ctx != NULL) {
+        ase_str_mon_clean_sess_pkts_timeout(tp->sess_ctx->sess_id, tp->client);
+        ase_sess_ctx_put(tp->sess_ctx, ase_sess_holder_net);
+        tp->sess_ctx = NULL;
+    }
+
+    set_no_more_check_pkt_drop_on_pt(tp);
+
+    if (tp->caps != NULL) {
+        ase_sess_caps_put(tp->caps);
+        tp->caps = NULL;
+    }
+
+    tcp_port_del_swp_timer(tp);
+    ase_tcp_detach_peer(tp);
+    ase_tcp_port_detach_sinks(tp);
+    tp->drop_bytes += ase_buf_len(&tp->sndbuf);
+    tp->pkt_stat->droped += ase_buf_len(&tp->sndbuf);
+    ase_dfx_cnt_inc(ASE_DFX_DROP_STR, ase_buf_lsstrs(&tp->sndbuf));
+    ase_buf_close(&tp->sndbuf);
+    ase_tcp_stop_flush_ntfy(tp);
+    ase_tcp_del_timeout_list(tp);
+    ase_free(&g_tcp_port_mem_ctx.pmem.mem, tp);
+}, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (tp->se != 0) {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "free %s port(%d) rcv %d snd %d, pkt_list(%d)",
+            get_protol_str(tp), tp->se->fd, tp->rcv_bytes, tp->snd_bytes, List_Len(&tp->pkt_list));
+        sched_evt_close(tp->se);
+        ase_dfx_cnt_inc(ASE_DFX_CLOSE);
+        tp->se = NULL;
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: tp->se, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->se, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->se, kind: MemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: 0, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: 0, kind: IntegerLiteral, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "free %s port(%d) rcv %d snd %d, pkt_list(%d)",
+            get_protol_str(tp), tp->se->fd, tp->rcv_bytes, tp->snd_bytes, List_Len(&tp->pkt_list));
+        sched_evt_close(tp->se);
+        ase_dfx_cnt_inc(ASE_DFX_CLOSE);
+        tp->se = NULL;
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: sched_evt_close, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sched_evt_close, expr: sched_evt_close, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sched_evt_close, expr: sched_evt_close, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->se, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->se, kind: MemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (tp->sess_ctx != NULL) {
+        ase_str_mon_clean_sess_pkts_timeout(tp->sess_ctx->sess_id, tp->client);
+        ase_sess_ctx_put(tp->sess_ctx, ase_sess_holder_net);
+        tp->sess_ctx = NULL;
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: tp->sess_ctx != NULL, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        ase_str_mon_clean_sess_pkts_timeout(tp->sess_ctx->sess_id, tp->client);
+        ase_sess_ctx_put(tp->sess_ctx, ase_sess_holder_net);
+        tp->sess_ctx = NULL;
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_str_mon_clean_sess_pkts_timeout, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_str_mon_clean_sess_pkts_timeout, expr: ase_str_mon_clean_sess_pkts_timeout, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->sess_ctx, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->sess_ctx, kind: MemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: set_no_more_check_pkt_drop_on_pt, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_no_more_check_pkt_drop_on_pt, expr: set_no_more_check_pkt_drop_on_pt, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_no_more_check_pkt_drop_on_pt, expr: set_no_more_check_pkt_drop_on_pt, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (tp->caps != NULL) {
+        ase_sess_caps_put(tp->caps);
+        tp->caps = NULL;
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: tp->caps != NULL, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        ase_sess_caps_put(tp->caps);
+        tp->caps = NULL;
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_sess_caps_put, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_sess_caps_put, expr: ase_sess_caps_put, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_sess_caps_put, expr: ase_sess_caps_put, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->caps, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->caps, kind: MemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: tcp_port_del_swp_timer, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tcp_port_del_swp_timer, expr: tcp_port_del_swp_timer, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tcp_port_del_swp_timer, expr: tcp_port_del_swp_timer, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_detach_peer, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_detach_peer, expr: ase_tcp_detach_peer, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_detach_peer, expr: ase_tcp_detach_peer, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_port_detach_sinks, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_detach_sinks, expr: ase_tcp_port_detach_sinks, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_detach_sinks, expr: ase_tcp_port_detach_sinks, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: tp, kind: CompoundAssignOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: , expr: ase_buf_len, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: ase_buf_len, expr: ase_buf_len, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: , expr: tp->pkt_stat->droped, kind: CompoundAssignOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->pkt_stat->droped, kind: CXXDependentScopeMemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: , expr: ase_buf_len, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: ase_buf_len, expr: ase_buf_len, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: , expr: ase_buf_close, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_buf_close, expr: ase_buf_close, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_stop_flush_ntfy, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_stop_flush_ntfy, expr: ase_tcp_stop_flush_ntfy, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_stop_flush_ntfy, expr: ase_tcp_stop_flush_ntfy, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_del_timeout_list, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_del_timeout_list, expr: ase_tcp_del_timeout_list, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_del_timeout_list, expr: ase_tcp_del_timeout_list, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_free, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_free, expr: ase_free, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: g_tcp_port_mem_ctx, expr: g_tcp_port_mem_ctx.pmem.mem, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: void ase_tcp_port_post_event_check(struct ase_tcp_port *tp)
+{
+    enum ase_close_type ct_dn_rcv = 0;
+    enum ase_close_type ct_up_sent = (tp->xclose_state[up] >> ase_close_state_sent) & ase_close_mask;
+
+    // upper layer sents FIN, check if all data flushed, if yes, send FIN out
+    if (ase_tcp_up_rcv_not_end_dn(tp, ase_close_type_read) &&
+        (is_dn_port_close_write(tp) || tp->sndbuf.len == 0)) {
+        // if nothing to be sent and tp layer has closed read, then fnd FIN out
+        set_dn_port_close_read_sent(tp);
+        ase_tcp_port_shutdown_write(tp);
+
+        /* Fast path: if we sent FIN and have recv FIN, then mark close */
+        if (is_dn_port_close_read_rcvd(tp)) {
+            tp->close_write_by_app = true;
+            set_dn_port_close_write_rcvd(tp);
+        }
+    }
+
+    if (is_dn_port_close_read_rcvd(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_closed(tp)) {
+        // Fast path: read&write close has been received from the socket.
+        // We should delete any epoll even if using socket here.
+        set_dn_port_closed(tp);
+        // the socket is dead, del it to avoid unexpected operations
+        ase_tcp_port_set_dummy(tp);
+    } else if (is_dn_port_close_read_rcvd(tp) &&
+               !is_up_port_close_read_sent(tp)) {
+        // peer sends us FIN, but we can still send data to peer
+        tp->se->exp_evts |= ~SCHED_EVT_READ;
+        sched_evt_chg(tp->se);
+    }
+
+    // check read close ack below
+    if (is_dn_port_close_read_sent(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_close_read_ack_rcvd(tp)) {
+        // the upper layer does not want to send data anymore, and the tcp
+        // stack indicates HUP is recv HUP is a safer operation to
+        // we mark close_ack after we recv HUP is a safer operation to
+        // guarantee data in the sendbuf is not lost
+        // https://stackoverflow.com/questions/5299152/tcp-when-is-pollhup-generated
+        // https://stackoverflow.com/questions/8848211/close-socket-directly-after-send-sendbuf
+        set_dn_port_close_read_ack_rcvd(tp);
+    }
+
+    // close_write_ack is always sent immediately when we recv close_write from
+    // upper layer. so do not process it here
+
+    ct_dn_rcv = (tp->xclose_state[dn] >> ase_close_state_recv) & ase_close_mask;
+    if (ct_up_sent | ct_dn_rcv != ct_up_sent) {
+        tp->close_state[tp_ct_up_rcv] |= ct_dn_rcv < ase_close_sent;
+        ase_sink_close(tp->sink, ct_dn_rcv);
+    }
+
+    if (is_dn_port_close_write_rcvd(tp) && !ase_buf_empty(&tp->sndbuf)) {
+        // can't send anymore, release buf
+        drop_snd_buf_due2netio(tp);
+    }
+
+    if (tp->waiting_bypass && ase_buf_empty(tp->sndbuf) &&
+        tp->state == ase_tcp_port_state_running) {
+        ase_tcp_port_check_bypass(tp);
+    }
+}, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_tcp_port *tp, kind: ParmVarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+    enum ase_close_type ct_dn_rcv = 0;
+    enum ase_close_type ct_up_sent = (tp->xclose_state[up] >> ase_close_state_sent) & ase_close_mask;
+
+    // upper layer sents FIN, check if all data flushed, if yes, send FIN out
+    if (ase_tcp_up_rcv_not_end_dn(tp, ase_close_type_read) &&
+        (is_dn_port_close_write(tp) || tp->sndbuf.len == 0)) {
+        // if nothing to be sent and tp layer has closed read, then fnd FIN out
+        set_dn_port_close_read_sent(tp);
+        ase_tcp_port_shutdown_write(tp);
+
+        /* Fast path: if we sent FIN and have recv FIN, then mark close */
+        if (is_dn_port_close_read_rcvd(tp)) {
+            tp->close_write_by_app = true;
+            set_dn_port_close_write_rcvd(tp);
+        }
+    }
+
+    if (is_dn_port_close_read_rcvd(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_closed(tp)) {
+        // Fast path: read&write close has been received from the socket.
+        // We should delete any epoll even if using socket here.
+        set_dn_port_closed(tp);
+        // the socket is dead, del it to avoid unexpected operations
+        ase_tcp_port_set_dummy(tp);
+    } else if (is_dn_port_close_read_rcvd(tp) &&
+               !is_up_port_close_read_sent(tp)) {
+        // peer sends us FIN, but we can still send data to peer
+        tp->se->exp_evts |= ~SCHED_EVT_READ;
+        sched_evt_chg(tp->se);
+    }
+
+    // check read close ack below
+    if (is_dn_port_close_read_sent(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_close_read_ack_rcvd(tp)) {
+        // the upper layer does not want to send data anymore, and the tcp
+        // stack indicates HUP is recv HUP is a safer operation to
+        // we mark close_ack after we recv HUP is a safer operation to
+        // guarantee data in the sendbuf is not lost
+        // https://stackoverflow.com/questions/5299152/tcp-when-is-pollhup-generated
+        // https://stackoverflow.com/questions/8848211/close-socket-directly-after-send-sendbuf
+        set_dn_port_close_read_ack_rcvd(tp);
+    }
+
+    // close_write_ack is always sent immediately when we recv close_write from
+    // upper layer. so do not process it here
+
+    ct_dn_rcv = (tp->xclose_state[dn] >> ase_close_state_recv) & ase_close_mask;
+    if (ct_up_sent | ct_dn_rcv != ct_up_sent) {
+        tp->close_state[tp_ct_up_rcv] |= ct_dn_rcv < ase_close_sent;
+        ase_sink_close(tp->sink, ct_dn_rcv);
+    }
+
+    if (is_dn_port_close_write_rcvd(tp) && !ase_buf_empty(&tp->sndbuf)) {
+        // can't send anymore, release buf
+        drop_snd_buf_due2netio(tp);
+    }
+
+    if (tp->waiting_bypass && ase_buf_empty(tp->sndbuf) &&
+        tp->state == ase_tcp_port_state_running) {
+        ase_tcp_port_check_bypass(tp);
+    }
+}, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: enum ase_close_type ct_dn_rcv = 0;, kind: DeclStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: enum ase_close_type, kind: EnumDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: enum ase_close_type ct_dn_rcv, kind: VarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: enum ase_close_type ct_up_sent = (tp->xclose_state[up] >> ase_close_state_sent) & ase_close_mask;, kind: DeclStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: enum ase_close_type ct_up_sent, kind: VarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (ase_tcp_up_rcv_not_end_dn(tp, ase_close_type_read) &&
+        (is_dn_port_close_write(tp) || tp->sndbuf.len == 0)) {
+        // if nothing to be sent and tp layer has closed read, then fnd FIN out
+        set_dn_port_close_read_sent(tp);
+        ase_tcp_port_shutdown_write(tp);
+
+        /* Fast path: if we sent FIN and have recv FIN, then mark close */
+        if (is_dn_port_close_read_rcvd(tp)) {
+            tp->close_write_by_app = true;
+            set_dn_port_close_write_rcvd(tp);
+        }
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_up_rcv_not_end_dn(tp, ase_close_type_read) &&
+        (is_dn_port_close_write(tp) || tp->sndbuf.len == 0), kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        // if nothing to be sent and tp layer has closed read, then fnd FIN out
+        set_dn_port_close_read_sent(tp);
+        ase_tcp_port_shutdown_write(tp);
+
+        /* Fast path: if we sent FIN and have recv FIN, then mark close */
+        if (is_dn_port_close_read_rcvd(tp)) {
+            tp->close_write_by_app = true;
+            set_dn_port_close_write_rcvd(tp);
+        }
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: set_dn_port_close_read_sent, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_dn_port_close_read_sent, expr: set_dn_port_close_read_sent, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_dn_port_close_read_sent, expr: set_dn_port_close_read_sent, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_port_shutdown_write, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_shutdown_write, expr: ase_tcp_port_shutdown_write, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_shutdown_write, expr: ase_tcp_port_shutdown_write, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (is_dn_port_close_read_rcvd(tp)) {
+            tp->close_write_by_app = true;
+            set_dn_port_close_write_rcvd(tp);
+        }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_rcvd, expr: is_dn_port_close_read_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_rcvd, expr: is_dn_port_close_read_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+            tp->close_write_by_app = true;
+            set_dn_port_close_write_rcvd(tp);
+        }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: set_dn_port_close_write_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_dn_port_close_write_rcvd, expr: set_dn_port_close_write_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_dn_port_close_write_rcvd, expr: set_dn_port_close_write_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (is_dn_port_close_read_rcvd(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_closed(tp)) {
+        // Fast path: read&write close has been received from the socket.
+        // We should delete any epoll even if using socket here.
+        set_dn_port_closed(tp);
+        // the socket is dead, del it to avoid unexpected operations
+        ase_tcp_port_set_dummy(tp);
+    } else if (is_dn_port_close_read_rcvd(tp) &&
+               !is_up_port_close_read_sent(tp)) {
+        // peer sends us FIN, but we can still send data to peer
+        tp->se->exp_evts |= ~SCHED_EVT_READ;
+        sched_evt_chg(tp->se);
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_rcvd, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_rcvd, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_rcvd, expr: is_dn_port_close_read_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_rcvd, expr: is_dn_port_close_read_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_write_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_write_rcvd, expr: is_dn_port_write_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_write_rcvd, expr: is_dn_port_write_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: !is_dn_port_closed, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_closed, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_closed, expr: is_dn_port_closed, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_closed, expr: is_dn_port_closed, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        // Fast path: read&write close has been received from the socket.
+        // We should delete any epoll even if using socket here.
+        set_dn_port_closed(tp);
+        // the socket is dead, del it to avoid unexpected operations
+        ase_tcp_port_set_dummy(tp);
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: set_dn_port_closed, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_dn_port_closed, expr: set_dn_port_closed, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_dn_port_closed, expr: set_dn_port_closed, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_port_set_dummy, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_set_dummy, expr: ase_tcp_port_set_dummy, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_set_dummy, expr: ase_tcp_port_set_dummy, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (is_dn_port_close_read_rcvd(tp) &&
+               !is_up_port_close_read_sent(tp)) {
+        // peer sends us FIN, but we can still send data to peer
+        tp->se->exp_evts |= ~SCHED_EVT_READ;
+        sched_evt_chg(tp->se);
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_rcvd, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_rcvd, expr: is_dn_port_close_read_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_rcvd, expr: is_dn_port_close_read_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: !is_up_port_close_read_sent, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_up_port_close_read_sent, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_up_port_close_read_sent, expr: is_up_port_close_read_sent, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_up_port_close_read_sent, expr: is_up_port_close_read_sent, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        // peer sends us FIN, but we can still send data to peer
+        tp->se->exp_evts |= ~SCHED_EVT_READ;
+        sched_evt_chg(tp->se);
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: sched_evt_chg, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sched_evt_chg, expr: sched_evt_chg, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sched_evt_chg, expr: sched_evt_chg, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->se, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->se, kind: MemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (is_dn_port_close_read_sent(tp) && is_dn_port_write_rcvd(tp) &&
+        !is_dn_port_close_read_ack_rcvd(tp)) {
+        // the upper layer does not want to send data anymore, and the tcp
+        // stack indicates HUP is recv HUP is a safer operation to
+        // we mark close_ack after we recv HUP is a safer operation to
+        // guarantee data in the sendbuf is not lost
+        // https://stackoverflow.com/questions/5299152/tcp-when-is-pollhup-generated
+        // https://stackoverflow.com/questions/8848211/close-socket-directly-after-send-sendbuf
+        set_dn_port_close_read_ack_rcvd(tp);
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_sent, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_sent, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_sent, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_sent, expr: is_dn_port_close_read_sent, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_sent, expr: is_dn_port_close_read_sent, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_write_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_write_rcvd, expr: is_dn_port_write_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_write_rcvd, expr: is_dn_port_write_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: !is_dn_port_close_read_ack_rcvd, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_read_ack_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_ack_rcvd, expr: is_dn_port_close_read_ack_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_read_ack_rcvd, expr: is_dn_port_close_read_ack_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        // the upper layer does not want to send data anymore, and the tcp
+        // stack indicates HUP is recv HUP is a safer operation to
+        // we mark close_ack after we recv HUP is a safer operation to
+        // guarantee data in the sendbuf is not lost
+        // https://stackoverflow.com/questions/5299152/tcp-when-is-pollhup-generated
+        // https://stackoverflow.com/questions/8848211/close-socket-directly-after-send-sendbuf
+        set_dn_port_close_read_ack_rcvd(tp);
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: set_dn_port_close_read_ack_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_dn_port_close_read_ack_rcvd, expr: set_dn_port_close_read_ack_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: set_dn_port_close_read_ack_rcvd, expr: set_dn_port_close_read_ack_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (ct_up_sent | ct_dn_rcv != ct_up_sent) {
+        tp->close_state[tp_ct_up_rcv] |= ct_dn_rcv < ase_close_sent;
+        ase_sink_close(tp->sink, ct_dn_rcv);
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ct_up_sent, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ct_up_sent, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ct_dn_rcv, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ct_dn_rcv, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ct_up_sent, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        tp->close_state[tp_ct_up_rcv] |= ct_dn_rcv < ase_close_sent;
+        ase_sink_close(tp->sink, ct_dn_rcv);
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_sink_close, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_sink_close, expr: ase_sink_close, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ct_dn_rcv, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (is_dn_port_close_write_rcvd(tp) && !ase_buf_empty(&tp->sndbuf)) {
+        // can't send anymore, release buf
+        drop_snd_buf_due2netio(tp);
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_write_rcvd, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: is_dn_port_close_write_rcvd, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_write_rcvd, expr: is_dn_port_close_write_rcvd, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: is_dn_port_close_write_rcvd, expr: is_dn_port_close_write_rcvd, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: !ase_buf_empty, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_buf_empty, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_buf_empty, expr: ase_buf_empty, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        // can't send anymore, release buf
+        drop_snd_buf_due2netio(tp);
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: drop_snd_buf_due2netio, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: drop_snd_buf_due2netio, expr: drop_snd_buf_due2netio, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: drop_snd_buf_due2netio, expr: drop_snd_buf_due2netio, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (tp->waiting_bypass && ase_buf_empty(tp->sndbuf) &&
+        tp->state == ase_tcp_port_state_running) {
+        ase_tcp_port_check_bypass(tp);
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: tp->waiting_bypass && ase_buf_empty(tp->sndbuf) &&
+        tp->state == ase_tcp_port_state_running, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        ase_tcp_port_check_bypass(tp);
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_port_check_bypass, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_check_bypass, expr: ase_tcp_port_check_bypass, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_check_bypass, expr: ase_tcp_port_check_bypass, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: int ase_tcp_on_read_str(struct ase_tcp_port *tp, struct ase_str *str,
+    uint32_t start, uint32_t len)
+{
+    ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "enter ase frame.");
+    ase_perf_watch_userdefine_begin();
+    ase_refresh_sess(tp, tp->ttl);
+    tp->rcv_bytes += len;
+    tp->pkt_stat->rcved += len;
+    ase_frame_kpi_inc(KPI_BYTES_REVED, len);
+    ase_traffic_tot_system_update(len);
+    ase_str_trace_port(str, ase_port_net_port(tp));
+    uint32_t sess_id = ase_sess_ctx_get_sess_id(tp->sess_ctx);
+
+    if (tp->bypass == 1) {
+        EXCLUDE_START_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+        ase_sink_write(tp->peer.out, str, start, len);
+        EXCLUDE_END_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+        ase_perf_watch_userdefine_end(ASE_PERF_USERDEFINE_TCP_ON_READ);
+        return 1;
+    }
+
+    if (!tp->first_pkt_proced) {
+        tp->first_pkt_proced = true;
+        (void)ase_calc_switch_proxy(tp, ase_tcp_port_read_on_proxy_switch_done);
+    }
+    ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "%s port %d send up str len %d",
+        get_protol_str(tp), tp->se->fd, len);
+    EXCLUDE_START_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+    ase_sink_write(tp->out, str, start, len);
+    EXCLUDE_END_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+    ase_perf_watch_userdefine_end(ASE_PERF_USERDEFINE_TCP_ON_READ);
+    return 1;
+}, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct ase_tcp_port *tp, kind: ParmVarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_str *str, kind: ParmVarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: uint32_t start, kind: ParmVarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: uint32_t len, kind: ParmVarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+    ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "enter ase frame.");
+    ase_perf_watch_userdefine_begin();
+    ase_refresh_sess(tp, tp->ttl);
+    tp->rcv_bytes += len;
+    tp->pkt_stat->rcved += len;
+    ase_frame_kpi_inc(KPI_BYTES_REVED, len);
+    ase_traffic_tot_system_update(len);
+    ase_str_trace_port(str, ase_port_net_port(tp));
+    uint32_t sess_id = ase_sess_ctx_get_sess_id(tp->sess_ctx);
+
+    if (tp->bypass == 1) {
+        EXCLUDE_START_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+        ase_sink_write(tp->peer.out, str, start, len);
+        EXCLUDE_END_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+        ase_perf_watch_userdefine_end(ASE_PERF_USERDEFINE_TCP_ON_READ);
+        return 1;
+    }
+
+    if (!tp->first_pkt_proced) {
+        tp->first_pkt_proced = true;
+        (void)ase_calc_switch_proxy(tp, ase_tcp_port_read_on_proxy_switch_done);
+    }
+    ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "%s port %d send up str len %d",
+        get_protol_str(tp), tp->se->fd, len);
+    EXCLUDE_START_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+    ase_sink_write(tp->out, str, start, len);
+    EXCLUDE_END_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+    ase_perf_watch_userdefine_end(ASE_PERF_USERDEFINE_TCP_ON_READ);
+    return 1;
+}, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_perf_watch_userdefine_begin, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_perf_watch_userdefine_begin, expr: ase_perf_watch_userdefine_begin, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_perf_watch_userdefine_begin, expr: ase_perf_watch_userdefine_begin, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_refresh_sess, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_refresh_sess, expr: ase_refresh_sess, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: tp, kind: CompoundAssignOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: , expr: len, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: , expr: tp->pkt_stat->rcved, kind: CompoundAssignOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->pkt_stat->rcved, kind: CXXDependentScopeMemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: , expr: len, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: True
+rootname: , expr: ase_traffic_tot_system_update, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_traffic_tot_system_update, expr: ase_traffic_tot_system_update, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: len, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_str_trace_port, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_str_trace_port, expr: ase_str_trace_port, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_str_trace_port, expr: ase_str_trace_port, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: str, expr: str, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: str, expr: str, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_port_net_port, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_port_net_port, expr: ase_port_net_port, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_port_net_port, expr: ase_port_net_port, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (tp->bypass == 1) {
+        EXCLUDE_START_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+        ase_sink_write(tp->peer.out, str, start, len);
+        EXCLUDE_END_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+        ase_perf_watch_userdefine_end(ASE_PERF_USERDEFINE_TCP_ON_READ);
+        return 1;
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: tp, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: 1, kind: IntegerLiteral, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        EXCLUDE_START_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+        ase_sink_write(tp->peer.out, str, start, len);
+        EXCLUDE_END_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
+        ase_perf_watch_userdefine_end(ASE_PERF_USERDEFINE_TCP_ON_READ);
+        return 1;
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_sink_write, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_sink_write, expr: ase_sink_write, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->peer.out, kind: CXXDependentScopeMemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: str, expr: str, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: start, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: len, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: return 1, kind: ReturnStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: 1, kind: IntegerLiteral, in_return_stmt: True, in_function: True, is_in_assignment: False
+rootname: , expr: if (!tp->first_pkt_proced) {
+        tp->first_pkt_proced = true;
+        (void)ase_calc_switch_proxy(tp, ase_tcp_port_read_on_proxy_switch_done);
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: !tp, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        tp->first_pkt_proced = true;
+        (void)ase_calc_switch_proxy(tp, ase_tcp_port_read_on_proxy_switch_done);
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_sink_write, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_sink_write, expr: ase_sink_write, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp->out, kind: MemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: tp, expr: tp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: str, expr: str, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: start, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: len, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: return 1, kind: ReturnStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: 1, kind: IntegerLiteral, in_return_stmt: True, in_function: True, is_in_assignment: False
+rootname: , expr: void ase_tcp_port_task_flush_rcv_pkt(struct list_head *link)
+{
+    struct ase_tcp_port *sp = list_entry(link, struct ase_tcp_port, swp_timer);
+    if (ase_tcp_port_task_start(sp) < 0) {
+        return;
+    }
+
+    struct ase_xbuf_info *info;
+    struct ase_xbuf_info *n;
+    struct ase_xbuf_info *str;
+    list_for_each_entry_safe(info, str, &sp->pkt_list, link) {
+        if (info->str != NULL) {
+            ase_sink_write(sp->out, info->str, 0, info->str->len);
+        }
+    }
+    sp->read_brake--;
+    uint32_t dn_recv = (sp->close_state[dn] >> ase_close_state_recv) & ase_close_state_mask;
+    if (dn_recv) {
+        ase_sink_close(sp->out, dn_recv);
+    }
+    ase_sess_bypass(sp->caps); // 强切代理，返回bypass状态
+    ase_tcp_port_task_end(sp);
+}, kind: FunctionDecl, in_return_stmt: False, in_function: False, is_in_assignment: False
+rootname: , expr: struct list_head *link, kind: ParmVarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+    struct ase_tcp_port *sp = list_entry(link, struct ase_tcp_port, swp_timer);
+    if (ase_tcp_port_task_start(sp) < 0) {
+        return;
+    }
+
+    struct ase_xbuf_info *info;
+    struct ase_xbuf_info *n;
+    struct ase_xbuf_info *str;
+    list_for_each_entry_safe(info, str, &sp->pkt_list, link) {
+        if (info->str != NULL) {
+            ase_sink_write(sp->out, info->str, 0, info->str->len);
+        }
+    }
+    sp->read_brake--;
+    uint32_t dn_recv = (sp->close_state[dn] >> ase_close_state_recv) & ase_close_state_mask;
+    if (dn_recv) {
+        ase_sink_close(sp->out, dn_recv);
+    }
+    ase_sess_bypass(sp->caps); // 强切代理，返回bypass状态
+    ase_tcp_port_task_end(sp);
+}, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_tcp_port *sp = list_entry(link, struct ase_tcp_port, swp_timer);, kind: DeclStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_tcp_port *sp, kind: VarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (ase_tcp_port_task_start(sp) < 0) {
+        return;
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_port_task_start, kind: BinaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_port_task_start, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_task_start, expr: ase_tcp_port_task_start, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_task_start, expr: ase_tcp_port_task_start, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: 0, kind: IntegerLiteral, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        return;
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: return, kind: ReturnStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_xbuf_info *info;, kind: DeclStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_xbuf_info, kind: RecordDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_xbuf_info *info, kind: VarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_xbuf_info *n;, kind: DeclStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_xbuf_info *n, kind: VarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_xbuf_info *str;, kind: DeclStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: struct ase_xbuf_info *str, kind: VarDecl, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: list_for_each_entry_safe, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: list_for_each_entry_safe, expr: list_for_each_entry_safe, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: info, expr: info, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: str, expr: str, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: link, expr: link, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        if (info->str != NULL) {
+            ase_sink_write(sp->out, info->str, 0, info->str->len);
+        }
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (info->str != NULL) {
+            ase_sink_write(sp->out, info->str, 0, info->str->len);
+        }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: info->str != NULL, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+            ase_sink_write(sp->out, info->str, 0, info->str->len);
+        }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_sink_write, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_sink_write, expr: ase_sink_write, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp->out, kind: MemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: info, expr: info, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: info, expr: info, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: 0, kind: IntegerLiteral, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: info, expr: info->str->len, kind: CXXDependentScopeMemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: info, expr: info, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: info, expr: info, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: info, expr: info, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp--, kind: UnaryOperator, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: if (dn_recv) {
+        ase_sink_close(sp->out, dn_recv);
+    }, kind: IfStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: dn_recv, kind: RecoveryExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: {
+        ase_sink_close(sp->out, dn_recv);
+    }, kind: CompoundStmt, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_sess_bypass, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_sess_bypass, expr: ase_sess_bypass, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_sess_bypass, expr: ase_sess_bypass, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp->caps, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp->caps, kind: MemberExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: , expr: ase_tcp_port_task_end, kind: CallExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_task_end, expr: ase_tcp_port_task_end, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: ase_tcp_port_task_end, expr: ase_tcp_port_task_end, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: ImplicitCastExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+rootname: sp, expr: sp, kind: DeclRefExpr, in_return_stmt: False, in_function: True, is_in_assignment: False
+Instrumented output written to: /home/zz/code/VarDetect_pylibtool/srcFile/ase_tcp_result.c

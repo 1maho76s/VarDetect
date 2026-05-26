@@ -1,0 +1,21 @@
+[project]
+name = "sharedvarfinder"
+version = "0.1.0"
+description = "Scan C/C++ source files to identify shared variables using a pylibtooling-compatible repository."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+optional-dependencies = {
+  pylibtooling = ["pylibtooling>=0.0.0"]
+}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX :: Linux",
+]
+[project.scripts]
+sharedvarfinder = "sharedvarfinder.cli:main"
+
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,118 @@
+/* ------------------------------------------
+   文件位置: srcFile/bitfield_struct.h
+   ------------------------------------------ */
+
+struct BitFieldDevice {
+    unsigned int status   : 4;   // bits 0-3:   设备状态
+    unsigned int mode     : 2;   // bits 4-5:   工作模式
+    unsigned int reserved : 2;   // bits 6-7:   保留位
+    unsigned int channel  : 8;   // bits 8-15:  通道号
+    unsigned int enabled  : 1;   // bit  16:    使能标志
+    int          error_code;      // 完整字段，用于对比
+    unsigned int priority : 3;   // bits 17-19: 优先级
+    unsigned int : 0;            // 匿名位域：强制对齐到下一个 unsigned int
+    unsigned int flags    : 12;  // 位标志集合
+};
+
+typedef struct stNGE_CFGFILE {
+    char *pcKeyEn;
+    char *pcKeyCh;
+    char *pcDefaultValue;
+    uint32_t uiModType;
+    uint32_t uiModSpecType;
+    uint32_t uiParseState : 1, uiIsNeedCheck : 1, uiIsNeedShow : 1, uiReserve : 29;
+} NGE_CFGFILE_S;
+
+typedef struct {
+    unsigned int a : 2;
+    unsigned int b : 6;
+    int          c;         // 普通字段
+    unsigned int d : 4;
+} DeviceConfig;
+
+typedef struct TaggedSensor {
+    unsigned int id     : 8;
+    unsigned int active : 1;
+    float        value;     // 普通字段
+} Sensor;
+
+struct ase_tcp_port {
+    uint32_t close_state[2];
+
+    struct list_head tasks;
+    struct list_head write_tasks;
+    struct list_head sup_timer;
+    struct list_head aging_timer;
+    struct ase_port net_port;
+    const struct ase_tcp_port_ops *sk_ops;
+
+    struct ase_sink in;
+    struct ase_sink *out;
+    struct ase_mem *mem;
+    struct ase_sess_caps *caps;
+    struct ase_session_ctx *sess_ctx;
+    struct {
+        struct ase_tcp_port *psp;
+        struct ase_sink in;
+        struct ase_sink *out;
+    } peer;
+
+/* ------------------------------------------
+   文件位置: srcFile/all_structs.h
+   ------------------------------------------ */
+
+struct BitFieldDevice {
+    unsigned int status   : 4;   
+        unsigned int mode     : 2;   
+        unsigned int reserved : 2;   
+        unsigned int channel  : 8;   
+        unsigned int enabled  : 1;   
+        int          error_code;      
+        unsigned int priority : 3;   
+        unsigned int : 0;            
+        unsigned int flags    : 12;
+};
+
+typedef struct stNGE_CFGFILE {
+    char *pcKeyEn;
+        char *pcKeyCh;
+        char *pcDefaultValue;
+        uint32_t uiModType;
+        uint32_t uiModSpecType;
+        uint32_t uiParseState : 1, uiIsNeedCheck : 1, uiIsNeedShow : 1, uiReserve : 29;
+} NGE_CFGFILE_S;
+
+typedef struct {
+    unsigned int a : 2;
+        unsigned int b : 6;
+        int          c;         
+        unsigned int d : 4;
+} DeviceConfig;
+
+typedef struct TaggedSensor {
+    unsigned int id     : 8;
+        unsigned int active : 1;
+        float        value;
+} Sensor;
+
+struct ase_tcp_port {
+    uint32_t close_state[2];
+
+    struct list_head tasks;
+    struct list_head write_tasks;
+    struct list_head sup_timer;
+    struct list_head aging_timer;
+    struct ase_port net_port;
+    const struct ase_tcp_port_ops *sk_ops;
+
+    struct ase_sink in;
+    struct ase_sink *out;
+    struct ase_mem *mem;
+    struct ase_sess_caps *caps;
+    struct ase_session_ctx *sess_ctx;
+    struct {
+        struct ase_tcp_port *psp;
+        struct ase_sink in;
+        struct ase_sink *out;
+    } peer;
+
