@@ -423,7 +423,21 @@ def _find_variable_accesses_from_ast(ast: dict[str, Any], shared_vars: set[str],
         kind = node.get("kind", "")
         if kind == "DeclRefExpr":
             return node.get("referencedDecl", {}).get("name", "")
-        if kind in {"MemberExpr", "ArraySubscriptExpr", "UnaryOperator", "ImplicitCastExpr", "CStyleCastExpr", "ParenExpr", "CastExpr", "RecoveryExpr", "CXXDependentScopeMemberExpr"}:
+        # 可穿透的节点类型列表:
+        # - MemberExpr/ArraySubscriptExpr: 成员访问/数组下标, 递归找 base
+        # - UnaryOperator: 解引用 (*p) 或取地址 (&x)
+        # - ImplicitCastExpr/CStyleCastExpr/ParenExpr/CastExpr: 类型转换/括号
+        # - RecoveryExpr: Clang 无法解析类型时的恢复节点
+        # - StmtExpr/CompoundStmt/DeclStmt/VarDecl: GNU 语句表达式 ({...}),
+        #   如 container_of / list_entry 宏展开后的完整 AST 结构:
+        #   RecoveryExpr → StmtExpr → CompoundStmt → DeclStmt → VarDecl(__mptr)
+        #     → RecoveryExpr → ParenExpr → DeclRefExpr(link)
+        #   需要穿透 VarDecl 才能到达内部的 DeclRefExpr
+        _PASSTHROUGH_KINDS = {"MemberExpr", "ArraySubscriptExpr", "UnaryOperator",
+                    "ImplicitCastExpr", "CStyleCastExpr", "ParenExpr", "CastExpr",
+                    "RecoveryExpr", "CXXDependentScopeMemberExpr",
+                    "StmtExpr", "CompoundStmt", "DeclStmt", "VarDecl"}
+        if kind in _PASSTHROUGH_KINDS:
             if kind in ("MemberExpr", "CXXDependentScopeMemberExpr") and isinstance(node.get("base"), dict):
                 root = _root_decl_name(node["base"])
                 if root:
@@ -604,17 +618,64 @@ def _find_variable_accesses_from_ast(ast: dict[str, Any], shared_vars: set[str],
                     #         如 struct T *peer = tp->peer.psp;
                     #         通过 _root_decl_name 找到根变量 tp, 检查是否在 shared_pointer_vars 中
                     else:
+                        added = False
                         for child in node.get("inner", []):
                             if isinstance(child, dict) and child.get("kind") not in ("ParmVarDecl",):
                                 root_name = _root_decl_name(child)
                                 if root_name and root_name in shared_pointer_vars:
                                     shared_pointer_vars.add(name)
+                                    added = True
                                     break
-                        else:
+                        if not added:
                             # Case 4: init 是字符串, 且该字符串恰好是共享指针变量名
                             #         如 struct T *ctx = (typeof(ctx))c; clang 把 init 存为 "c"
                             if isinstance(init, str) and init in shared_pointer_vars:
                                 shared_pointer_vars.add(name)
+                            # Case 5: 深度搜索 DeclRefExpr — 处理 container_of/list_entry 宏
+                            #   这些宏展开后 AST 结构很深:
+                            #   RecoveryExpr → StmtExpr → CompoundStmt → DeclStmt
+                            #     → VarDecl(__mptr) → RecoveryExpr → ParenExpr → DeclRefExpr(link)
+                            #   _root_decl_name 可能因为中间节点类型不在穿透列表中而失败,
+                            #   所以这里做一次暴力深度搜索, 找到所有 DeclRefExpr 引用的变量名,
+                            #   如果其中任何一个在 shared_pointer_vars 中, 则当前变量也是共享指针。
+                            elif not added:
+                                # Case 5: 源码文本回退 — 处理 container_of/list_entry 宏
+                                #   当 Clang 无法完整解析宏展开 (CompoundStmt 为空) 时,
+                                #   回退到源码文本扫描: 从 VarDecl 所在行的源码中提取标识符,
+                                #   检查是否有已知的共享指针变量名出现在初始化表达式中。
+                                #   典型场景:
+                                #     struct ase_tcp_port *sp = list_entry(link, ...);
+                                #   源码中 "link" 出现在 sp 的声明行, 且 link ∈ shared_pointer_vars
+                                #   → sp 也应被追踪。
+                                _line_num = 0
+                                # 尝试多种方式获取行号 (Clang AST 中 line 字段可能被省略)
+                                _loc = node.get("loc", {})
+                                _line_num = _loc.get("line", 0)
+                                if not _line_num:
+                                    # 从 range.end.expansionLoc 获取 (宏展开位置)
+                                    _range = node.get("range", {})
+                                    for _endpoint in ("end", "begin"):
+                                        _ep = _range.get(_endpoint, {})
+                                        if "expansionLoc" in _ep:
+                                            _line_num = _ep["expansionLoc"].get("line", 0)
+                                            if _line_num:
+                                                break
+                                        _line_num = _ep.get("line", 0)
+                                        if _line_num:
+                                            break
+                                if not _line_num and _loc.get("offset"):
+                                    # 通过 byte offset 计算行号
+                                    _offset = _loc["offset"]
+                                    _line_num = source[:_offset].count('\n') + 1
+                                _src_lines = source.splitlines()
+                                if _line_num and 1 <= _line_num <= len(_src_lines):
+                                    import re
+                                    _src_line = _src_lines[_line_num - 1]
+                                    # 提取源码行中所有 C 标识符
+                                    _identifiers = set(re.findall(r'\b[a-zA-Z_]\w*\b', _src_line))
+                                    if _identifiers & shared_pointer_vars:
+                                        shared_pointer_vars.add(name)
+                                    shared_pointer_vars.add(name)
             elif kind == "BinaryOperator" and node.get("opcode") == "=":
                 # 赋值语句: 左侧是指针变量, 右侧来自共享内存
                 # 如: struct T *p = NULL; ... p = tp->peer;

@@ -197,19 +197,26 @@ void ase_tcp_port_task_flush_rcv_pkt(struct list_head *link)
     struct ase_xbuf_info *str;
     list_for_each_entry_safe(info, str, &sp->pkt_list, link) {
         if (info->str != NULL) {
+            SIM_FLUSH_TEMP(&(sp->pkt_list));
             SIM_FLUSH(&(info->str));
             ase_sink_write(sp->out, info->str, 0, info->str->len);
+            SIM_FLUSH(&(sp->out));
             SIM_FLUSH(&(info->str));
             SIM_FLUSH(&(info->str));
             SIM_FLUSH(&(info->str->len));
         }
-        SIM_FLUSH(&(info->str));
+        SIM_FLUSH_TEMP(&(sp->pkt_list));
     }
     sp->read_brake--;
+    SIM_FLUSH(&(sp->read_brake));
     uint32_t dn_recv = (sp->close_state[dn] >> ase_close_state_recv) & ase_close_state_mask;
     if (dn_recv) {
+        SIM_FLUSH_TEMP(&(sp->close_state));
         ase_sink_close(sp->out, dn_recv);
+        SIM_FLUSH_TEMP(&(sp->out));
     }
+    SIM_FLUSH_TEMP(&(sp->close_state));
     ase_sess_bypass(sp->caps); // 强切代理，返回bypass状态
+    SIM_FLUSH(&(sp->caps));
     ase_tcp_port_task_end(sp);
 }
