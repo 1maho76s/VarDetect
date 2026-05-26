@@ -41,11 +41,11 @@
 
 ### 效果
 
-| 原始代码 | 插桩后 |
-|---------|--------|
-| `g_counter++;` | `SIM_FLUSH(&(g_counter)); g_counter++;` |
-| `tp->rcv_bytes += len;` | `tp->rcv_bytes += len; SIM_FLUSH(&(tp->rcv_bytes));` |
-| `if (tp->state == RUNNING)` | `if (tp->state == RUNNING) { SIM_FLUSH(&(tp->state)); ... }` |
+| 原始代码 | 插桩后 | 说明 |
+|---------|--------|------|
+| `g_counter++;` | `g_counter++; SIM_FLUSH(&(g_counter));` | AST 确认的访问 |
+| `tp->rcv_bytes += len;` | `tp->rcv_bytes += len; SIM_FLUSH(&(tp->rcv_bytes));` | AST 确认的访问 |
+| `if (tp->state == RUNNING)` | `if (tp->state == RUNNING) { SIM_FLUSH_TEMP(&(tp->state)); ... }` | 函数未声明导致 RecoveryExpr，由 temp_flush 回退检测 |
 
 ---
 
@@ -105,14 +105,18 @@ Clang -ast-dump=json ──→ JSON AST
          ├── 1. _collect_shared_pointer_aliases()  ──→ shared_pointer_vars: {tp, sp, info, ...}
          │
          ├── 2. walk() AST 遍历  ──→ VariableAccess 列表
+         │       (RecoveryExpr 节点仅递归子节点, 不做正则扫描)
          │
-         ├── 3. 去重 / cacheline 合并 / 位域过滤
+         ├── 3. temp_flush 源码级回退 (可选)  ──→ SIM_FLUSH_TEMP 访问列表
+         │       (统一处理 Clang 无法解析的区域, 含去重)
          │
-         ├── 4. 逐行插入 SIM_FLUSH
+         ├── 4. 去重 / cacheline 合并 / 位域过滤
          │
-         ├── 5. else-if 链传播
+         ├── 5. 逐行插入 SIM_FLUSH / SIM_FLUSH_TEMP
          │
-         └── 6. post-if-flush (可选)
+         ├── 6. else-if 链传播
+         │
+         └── 7. post-if-flush (可选)
                     │
                     ▼
               插桩后的源码
@@ -153,12 +157,13 @@ instrument_code(source, ...)
     ├── _run_clang_ast_dump()                     # 步骤2: 生成 AST
     ├── _find_variable_accesses_from_ast()        # 步骤3: 找所有访问点
     │       ├── _collect_shared_pointer_aliases() #   3a: 指针别名传播
-    │       └── walk()                             #   3b: AST 遍历
+    │       ├── walk()                             #   3b: AST 遍历 (RecoveryExpr 仅递归子节点)
+    │       └── temp_flush 源码回退 (可选)          #   3c: 正则扫描未解析区域
     ├── 去重 & 合并                                 # 步骤4
-    ├── 逐行插入 SIM_FLUSH                          # 步骤5
+    ├── 逐行插入 SIM_FLUSH / SIM_FLUSH_TEMP         # 步骤5
     ├── else-if 链传播                              # 步骤6
     ├── post-if-flush (可选)                        # 步骤7
-    └── temp-flush 源码回退 (可选)                   # 步骤8
+    └── temp-flush 源码回退已整合到步骤3c            # (不再有独立步骤8)
 ```
 
 #### 3. 数据结构
@@ -197,6 +202,7 @@ class VariableAccess:
 | `_is_shared_address_of(node)` | 判断表达式是否是"共享变量的地址"（支持 MemberExpr, ArraySubscriptExpr） |
 | `_is_source_node(node)` | 判断节点是否来自源文件（排除 include 文件） |
 | `_get_enclosing_end_line(ancestors, default)` | 向上查找 CallExpr/BinaryOperator 确定 flush 插入的结束行 |
+| `_find_global_var_accesses_from_source(...)` | 源码级正则回退：扫描 `ptr->member.field` 链和 `*ptr`，产生 SIM_FLUSH_TEMP |
 
 ### collect.py — 结构体收集器
 
@@ -280,7 +286,7 @@ DeclRefExpr → _is_shared_declref(name) → 直接全局共享变量
 MemberExpr   → _node_has_shared_reference → 成员访问(支持多级 ->)
 UnaryOperator(*p) → _node_has_shared_reference → 指针解引用
 ArraySubscriptExpr → _node_has_shared_reference → 数组下标
-RecoveryExpr → 源码级正则回退 → 从损坏 AST 中恢复
+RecoveryExpr → 仅递归遍历子节点 (正则扫描已移至 temp_flush 源码回退统一处理)
 ```
 
 **`_node_has_shared_reference` 的判断逻辑**：
@@ -334,7 +340,12 @@ ImplicitCastExpr/ParenExpr/CastExpr:
 
 #### 阶段 E: temp-flush 源码级回退 (可选)
 
-当 Clang 因类型无法解析而丢弃 AST 子树时，用正则扫描源码中的 `ptr->member` 和 `*ptr` 模式作为补充。
+当 Clang 因函数未声明等原因无法解析类型时，整个表达式变为 `RecoveryExpr`，其中的子表达式（即使类型定义完整）也会丢失。源码级回退统一处理这些区域：
+
+- 正则扫描共享指针变量的 `->` 和 `.` 成员链（如 `tp->sndbuf.len`）
+- 检测指针解引用（`*ptr`）和赋值操作
+- 产生 `SIM_FLUSH_TEMP` 标记，与 AST 确认的 `SIM_FLUSH` 区分
+- 通过 `(line, expression)` 和 `(end_line, expression)` 两个维度去重，避免与 AST 路径重复
 
 ---
 
@@ -384,15 +395,21 @@ SIM_FLUSH(&(tp->state));  // flush 移到 } 之后
 
 ### Temp Flush（源码级回退）
 
-当 Clang 因缺少头文件无法解析类型时，会产生 `RecoveryExpr` 节点。此时启用源码级正则回退：
+当 Clang 因缺少头文件（如函数未声明）无法解析类型时，会产生 `RecoveryExpr` 节点。Clang 的错误恢复是整体性的——一个未知函数调用会导致包含它的整个表达式变成 `RecoveryExpr`，连带其中本可以解析的子表达式（如 `tp->in`、`tp->sndbuf.len`）一起丢失。
+
+启用 `--temp-flush` 后，工具使用源码级正则扫描作为统一的回退机制：
 
 ```
 扫描规则:
-  - 共享指针变量的 -> 成员链:  ptr_name->member1->member2
-  - 指针解引用:               *ptr_name
+  - 共享指针变量的 -> 和 . 成员链:  ptr_name->member1.member2
+  - 指针解引用:                     *ptr_name
 ```
 
-这些访问点使用 `SIM_FLUSH_TEMP` 标记（区别于 `SIM_FLUSH`），行为完全一致。
+这些访问点使用 `SIM_FLUSH_TEMP` 标记（区别于 AST 确认的 `SIM_FLUSH`），表示"无法通过类型系统确认，由正则猜测得到"。
+
+**架构说明**：`RecoveryExpr` 节点不再做独立的正则扫描。当 `--temp-flush` 开启时，由源码级回退统一处理所有 Clang 无法解析的区域；当 `--temp-flush` 关闭时，这些区域不会被插桩（用户不想要不确定的插桩）。这避免了两条检测路径的冲突和重复。
+
+**去重机制**：源码回退检测到的访问会与 AST 路径已检测到的访问去重——同一 `(line, expression)` 或同一 `(end_line, expression)` 的重复访问会被过滤。
 
 ### Cacheline 合并
 
@@ -487,7 +504,7 @@ PYTHONPATH=src python3 -m sharedvarfinder srcFile/ --json
 
 | 参数 | 说明 |
 |------|------|
-| `--temp-flush` | 启用源码级正则扫描回退（使用 SIM_FLUSH_TEMP） |
+| `--temp-flush` | 启用源码级正则扫描回退：对 Clang 无法解析的区域（RecoveryExpr）用正则检测共享变量访问，标记为 SIM_FLUSH_TEMP。不开启时这些区域不会被插桩 |
 
 ---
 
@@ -502,7 +519,7 @@ PYTHONPATH=src python3 -m sharedvarfinder srcFile/ --json
 ### AST 解析
 
 4. **依赖 Clang**：需要系统安装 Clang 并在 PATH 中。
-5. **类型解析依赖头文件**：缺少头文件时 Clang 生成 `RecoveryExpr`，此时启用 `--temp-flush` 作为回退。
+5. **类型解析依赖头文件**：缺少头文件时 Clang 生成 `RecoveryExpr`，整个表达式（包括其中本可解析的子表达式）都会丢失。启用 `--temp-flush` 后由源码级正则统一回退处理，产生 `SIM_FLUSH_TEMP`。未声明的函数会导致包含它的整个条件/表达式变为 `RecoveryExpr`。
 6. **GNU 扩展**：`({...})` 语句表达式（如 `container_of` 宏）可能产生 `StmtExpr`，`_root_decl_name` 不直接处理此节点，但外层的类型转换（`CStyleCastExpr`）通常能穿透。
 
 ### 插桩精度

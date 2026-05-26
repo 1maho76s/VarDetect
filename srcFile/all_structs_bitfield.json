@@ -1,4 +1,13 @@
 {
+  "ase_net_port_ops": {
+    "ase_net_port": false,
+    "int": false,
+    "ase_sess_ttl_type": false
+  },
+  "ase_net_port": {
+    "data": false,
+    "ops": false
+  },
   "BitFieldDevice": {
     "status": true,
     "mode": true,

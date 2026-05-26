@@ -43,6 +43,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--temp-flush", action="store_true", default=False,
         help="Enable source-level fallback: scan for shared variable member accesses missed by clang, instrument with SIM_FLUSH_TEMP")
+    parser.add_argument(
+        "--inter-ptr-flush", action="store_true", default=False,
+        help="Insert SIM_FLUSH_INTER_PTR for intermediate pointer dereferences in chained accesses")
     args = parser.parse_args(argv)
 
     if args.instrument:
@@ -58,7 +61,7 @@ def main(argv: list[str] | None = None) -> int:
         except OSError as e:
             print(f"Error reading file: {e}")
             return 1
-        instrumented = instrument_code(source, str(path), path, include_paths=args.include, conservative_ptr=args.conservative_ptr, post_if_flush=args.post_if_flush, bitfield_map_path=args.bitfield_map, struct_header_path=args.struct_header, temp_flush=args.temp_flush)
+        instrumented = instrument_code(source, str(path), path, include_paths=args.include, conservative_ptr=args.conservative_ptr, post_if_flush=args.post_if_flush, bitfield_map_path=args.bitfield_map, struct_header_path=args.struct_header, temp_flush=args.temp_flush, inter_ptr_flush=args.inter_ptr_flush)
         output_path = path.with_name(f"{path.stem}_result{path.suffix}")
         try:
             output_path.write_text(instrumented, encoding="utf-8")

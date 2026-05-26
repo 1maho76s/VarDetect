@@ -18,4 +18,5 @@ static inline void sim_flush(void* addr) {
 
 #define SIM_FLUSH_TEMP(addr) sim_flush((void*)(addr))
 
+#define SIM_FLUSH_INTER_PTR(addr) sim_flush((void*)(addr))
 #endif

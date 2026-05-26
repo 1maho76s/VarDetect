@@ -38,6 +38,15 @@ typedef struct TaggedSensor {
     float        value;     // 普通字段
 } Sensor;
 
+struct ase_sink{
+    char *buf;
+    uint32_t len;
+};
+
+struct ase_buf{
+    char *data;
+    uint32_t len;
+}
 
 /* source: engine/net/ase_tcp_port.h */
 struct ase_tcp_port {

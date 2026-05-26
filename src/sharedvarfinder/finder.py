@@ -344,6 +344,7 @@ class VariableAccess:
     member_name: Optional[str] = None  # for struct member accesses
     member_offset: Optional[int] = None  # byte offset in struct
     use_temp: bool = False  # use SIM_FLUSH_TEMP instead of SIM_FLUSH
+    use_inter_ptr: bool = False  # use SIM_FLUSH_INTER_PTR for intermediate pointer reads
 
 
 def _find_variable_accesses_from_ast(ast: dict[str, Any], shared_vars: set[str], source: str, conservative_ptr: bool = False, bitfield_map: Optional[dict[str, dict[str, bool]]] = None, temp_flush: bool = False) -> List[VariableAccess]:
@@ -673,9 +674,10 @@ def _find_variable_accesses_from_ast(ast: dict[str, Any], shared_vars: set[str],
                                     _src_line = _src_lines[_line_num - 1]
                                     # 提取源码行中所有 C 标识符
                                     _identifiers = set(re.findall(r'\b[a-zA-Z_]\w*\b', _src_line))
+                                    # 如果声明行中出现了已知的共享指针变量名,
+                                    # 说明当前变量从共享内存派生, 加入追踪集合
                                     if _identifiers & shared_pointer_vars:
                                         shared_pointer_vars.add(name)
-                                    shared_pointer_vars.add(name)
             elif kind == "BinaryOperator" and node.get("opcode") == "=":
                 # 赋值语句: 左侧是指针变量, 右侧来自共享内存
                 # 如: struct T *p = NULL; ... p = tp->peer;
@@ -733,10 +735,10 @@ def _find_variable_accesses_from_ast(ast: dict[str, Any], shared_vars: set[str],
                 return line if isinstance(line, int) else default_line
         return default_line
 
-    def _add_access(name: str, line: int, col: int, end_line: int, expr: str, root_name: str, root_expression: str, struct_type: Optional[str] = None, member_name: Optional[str] = None, member_offset: Optional[int] = None, is_write: bool = False) -> None:
+    def _add_access(name: str, line: int, col: int, end_line: int, expr: str, root_name: str, root_expression: str, struct_type: Optional[str] = None, member_name: Optional[str] = None, member_offset: Optional[int] = None, is_write: bool = False, use_temp: bool = False) -> None:
         if line <= 0 or end_line <= 0 or not expr.strip():
             return
-        accesses.append(VariableAccess(name, line, col, end_line, is_write, expr, root_name, root_expression, struct_type, member_name, member_offset))
+        accesses.append(VariableAccess(name, line, col, end_line, is_write, expr, root_name, root_expression, struct_type, member_name, member_offset, use_temp))
 
     def _node_has_shared_reference(node: dict[str, Any], ancestors: Optional[list[dict[str, Any]]] = None) -> bool:
         if ancestors is None:
@@ -1026,40 +1028,10 @@ def _find_variable_accesses_from_ast(ast: dict[str, Any], shared_vars: set[str],
                     if isinstance(child, dict):
                         walk(child, ancestors + [node], current_in_return, current_in_function, is_in_assignment)
             elif kind == "RecoveryExpr":
-                # Clang error-recovery node: AST children are lost, so scan
-                # the source text directly for shared pointer dereferences.
-                # Only scan short ranges — large ranges cover entire blocks and produce garbage.
-                if not current_in_return and current_in_function:
-                    rng = node.get("range", {})
-                    begin = rng.get("begin", {})
-                    end = rng.get("end", {})
-                    offset = _get_loc_value(begin, "offset") or 0
-                    line, col = offset_to_line_col(offset, source) if offset > 0 else (0, 0)
-                    if line == 0:
-                        line = _get_loc_value(begin, "line") or 0
-                        if line > 0 and line <= len(source.splitlines()):
-                            col = _get_loc_value(begin, "col") or 0
-                    if line <= 0 or col < 0:
-                        pass
-                    else:
-                        expr_text = range_text(rng)
-                        if expr_text and expr_text.count('\n') <= 2 and len(expr_text) <= 200:
-                            end_line = _get_enclosing_end_line(ancestors + [node], _get_loc_value(end, "line") if isinstance(_get_loc_value(end, "line"), int) else line)
-                            for ptr_name in sorted(shared_pointer_vars, key=len, reverse=True):
-                                if ptr_name not in expr_text:
-                                    continue
-                                # Capture full -> chain (e.g. ctx->np_st->snd_buf_anomaly)
-                                for m in re.finditer(
-                                    r'\b' + re.escape(ptr_name) + r'((?:\s*->\s*\w+)+)',
-                                    expr_text
-                                ):
-                                    expr = ptr_name + m.group(1)
-                                    is_write = _is_write_access(node, ancestors)
-                                    _add_access("", line, col, end_line, expr, ptr_name, ptr_name, is_write=is_write)
-                                for m in re.finditer(r'\*\b' + re.escape(ptr_name) + r'\b', expr_text):
-                                    expr = f"*{ptr_name}"
-                                    is_write = _is_write_access(node, ancestors)
-                                    _add_access("", line, col, end_line, expr, ptr_name, ptr_name, is_write=is_write)
+                # Clang error-recovery node: AST children are lost.
+                # 仅当 temp_flush 未开启时在此做正则扫描 (temp_flush 开启时由源码级回退统一处理)。
+                # temp_flush 关闭时也不扫描——用户不想要不确定的插桩。
+                # 即: RecoveryExpr 正则扫描已完全由 temp_flush 源码回退取代。
                 for child in node.get("inner", []):
                     if isinstance(child, dict):
                         walk(child, ancestors + [node], current_in_return, current_in_function, is_in_assignment)
@@ -1076,11 +1048,13 @@ def _find_variable_accesses_from_ast(ast: dict[str, Any], shared_vars: set[str],
     # that clang missed (types unresolvable). These use SIM_FLUSH_TEMP.
     if temp_flush:
         source_accesses = _find_global_var_accesses_from_source(source, shared_vars, shared_pointer_vars)
-        # Deduplicate: skip source accesses that overlap with AST-detected ones
-        # (same expression on the same line)
+        # 去重: 跳过与 AST 路径(含 RecoveryExpr)已检测到的重复访问
+        # 同一 line 或同一 end_line 的相同表达式视为重复
         ast_exprs = {(a.line, a.expression) for a in accesses}
+        ast_endline_exprs = {(a.end_line, a.expression) for a in accesses}
         for sa in source_accesses:
-            if (sa.line, sa.expression) not in ast_exprs:
+            if ((sa.line, sa.expression) not in ast_exprs
+                    and (sa.end_line, sa.expression) not in ast_endline_exprs):
                 accesses.append(sa)
     
     return accesses
@@ -1153,7 +1127,8 @@ def _find_global_var_accesses_from_source(source: str, shared_var_names: set[str
     all_vars = shared_var_names | shared_pointer_vars
     
     # Patterns for detecting writes: var->member [=| compound_assign] value
-    _ASSIGN_RE = re.compile(r'^\s*(\w+(?:(?:->|\.)\w+)+)\s*(\|=|\+=|-=|\*=|/=|%=|<<=|>>=|&=|\^=|=)')
+    # 注意: 末尾的 =(?!=) 使用负前瞻排除 == (比较运算符)
+    _ASSIGN_RE = re.compile(r'^\s*(\w+(?:(?:->|\.)\w+)+)\s*(\|=|\+=|-=|\*=|/=|%=|<<=|>>=|&=|\^=|=(?!=))')
     
     for var_name in sorted(all_vars, key=len, reverse=True):
         for line_idx, line in enumerate(lines, start=1):
@@ -1189,11 +1164,32 @@ def _find_global_var_accesses_from_source(source: str, shared_var_names: set[str
                         expression=expr, root_name=var_name,
                         root_expression=expr, use_temp=True,
                     ))
-    
+
     return accesses
 
 
-def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] = None, include_paths: Optional[list[str]] = None, conservative_ptr: bool = False, post_if_flush: bool = False, bitfield_map_path: Optional[str] = None, struct_header_path: Optional[str] = None, temp_flush: bool = False) -> str:
+def _expand_inter_ptr_prefixes(expr: str) -> list[str]:
+    """For 'a->b->c->d', return ['a->b', 'a->b->c'] (intermediate pointer prefixes)."""
+    positions = []
+    i = 0
+    while i < len(expr):
+        if expr[i:i+2] == '->':
+            positions.append(i)
+            i += 2
+        else:
+            i += 1
+    if len(positions) < 2:
+        return []
+    result = []
+    for idx in range(len(positions) - 1):
+        end = positions[idx] + 2
+        while end < len(expr) and (expr[end].isalnum() or expr[end] == '_'):
+            end += 1
+        result.append(expr[:end])
+    return result
+
+
+def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] = None, include_paths: Optional[list[str]] = None, conservative_ptr: bool = False, post_if_flush: bool = False, bitfield_map_path: Optional[str] = None, struct_header_path: Optional[str] = None, temp_flush: bool = False, inter_ptr_flush: bool = False) -> str:
     # Find shared variables
     variables = find_shared_variables_in_text(source, filename, path, include_paths=include_paths)
     shared_var_names = {var.name for var in variables}
@@ -1262,9 +1258,13 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                        and len(a.expression.strip()) >= 2]
 
     # Remove temp accesses that duplicate existing non-temp ones on the SAME line
+    # 或者 end_line 相同 (即插入位置相同, temp 版本冗余)
     non_temp_line_exprs = {(a.line, a.expression) for a in unique_accesses if not a.use_temp}
+    non_temp_endline_exprs = {(a.end_line, a.expression) for a in unique_accesses if not a.use_temp}
     unique_accesses = [a for a in unique_accesses
-                       if not a.use_temp or (a.line, a.expression) not in non_temp_line_exprs]
+                       if not a.use_temp
+                       or ((a.line, a.expression) not in non_temp_line_exprs
+                           and (a.end_line, a.expression) not in non_temp_endline_exprs)]
 
     # Remove partial -> chain expressions when a longer full chain exists at the same position.
     # e.g. ctx->np_st->snd_buf_anomaly supersedes np_st->snd_buf_anomaly and ctx->np_st.
@@ -1383,13 +1383,34 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
         else:
             final_accesses.extend(accesses_list)
 
+    # Generate intermediate pointer flushes for chained -> accesses
+    if inter_ptr_flush:
+        existing_endline_exprs = {(a.end_line, a.expression) for a in final_accesses}
+        inter_ptr_accesses: list[VariableAccess] = []
+        for access in final_accesses:
+            for prefix in _expand_inter_ptr_prefixes(access.expression):
+                if (access.end_line, prefix) not in existing_endline_exprs:
+                    inter_ptr_accesses.append(VariableAccess(
+                        name=access.name, line=access.line, column=access.column,
+                        end_line=access.end_line, is_write=False,
+                        expression=prefix, root_name=access.root_name,
+                        root_expression=access.root_expression, use_inter_ptr=True,
+                    ))
+                    existing_endline_exprs.add((access.end_line, prefix))
+        final_accesses.extend(inter_ptr_accesses)
+
     accesses = sorted(final_accesses, key=lambda a: (a.line, a.column), reverse=True)
 
     lines = source.splitlines()
     inserts = []
     for access in accesses:
         if 1 <= access.end_line <= len(lines):
-            flush_call = f"SIM_FLUSH_TEMP(&({access.expression}));" if access.use_temp else f"SIM_FLUSH(&({access.expression}));"
+            if access.use_inter_ptr:
+                flush_call = f"SIM_FLUSH_INTER_PTR(&({access.expression}));"
+            elif access.use_temp:
+                flush_call = f"SIM_FLUSH_TEMP(&({access.expression}));"
+            else:
+                flush_call = f"SIM_FLUSH(&({access.expression}));"
             inserts.append((access.end_line, flush_call))
     inserts.sort(key=lambda x: x[0], reverse=True)
     for line_num, flush in inserts:
@@ -1449,6 +1470,7 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
         if not wrapped_bare_body:
             # --- 跨行表达式/条件续行处理 ---
             # 上一行以逗号或左括号结尾 → 函数调用/表达式续行, 跳过
+            advanced_by_continuation = False
             while (insert_index < len(lines)
                    and insert_index > 0
                    and lines[insert_index - 1].rstrip().endswith((',', '('))
@@ -1456,6 +1478,7 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                    and lines[insert_index].strip()
                    and not lines[insert_index].strip().startswith(('{', '}', 'if', 'for', 'while', 'SIM_FLUSH'))):
                 insert_index += 1
+                advanced_by_continuation = True
             # 同理, 跳过 && / || 续行。处理多行 if 条件:
             #   if (cond1 &&
             #       cond2 &&        ← 以 && 结尾, 下一行仍是条件
@@ -1468,11 +1491,18 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                    and lines[insert_index].strip()
                    and not lines[insert_index].strip().startswith(('{', '}', 'if', 'for', 'while', 'SIM_FLUSH'))):
                 insert_index += 1
+                advanced_by_continuation = True
             next_line = lines[insert_index] if insert_index < len(lines) else ""
             next_indent = next_line[: len(next_line) - len(next_line.lstrip(" "))]
             # 下一行是单独的花括号 → flush 插入到花括号内部
             # 下一行形如 "... ) {" (多行条件末尾) → 同样处理, flush 放 { 之后
-            if next_line.strip() == "{" or (next_line.strip().endswith('{') and ')' in next_line):
+            # 注意: 仅当前面经过了续行跳过 (说明处于多行条件上下文) 时,
+            #       才将 ") {" 模式视为条件末尾。否则 "if (...) {" 是独立语句,
+            #       SIM_FLUSH 应插在它之前而非内部。
+            if next_line.strip() == "{":
+                insert_index += 1
+                indent = next_indent + "    "
+            elif advanced_by_continuation and next_line.strip().endswith('{') and ')' in next_line:
                 insert_index += 1
                 indent = next_indent + "    "
             elif next_line.strip().startswith(("}", "else", "case", "default")):
@@ -1648,11 +1678,11 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                     if s.startswith("SIM_FLUSH"):
                         cond_flush = lines[if_scan].lstrip()
                         if_scan += 1
-                        # Collect all consecutive SIM_FLUSH lines (from condition)
-                        # but stop at first non-SIM_FLUSH non-empty line
+                        # 收集所有连续的 SIM_FLUSH 行 (都属于条件中的共享变量访问)
                         while if_scan < len(lines):
                             ns = lines[if_scan].strip()
                             if ns.startswith("SIM_FLUSH"):
+                                cond_flush += "\n" + lines[if_scan].lstrip()
                                 if_scan += 1
                             elif ns == "":
                                 if_scan += 1
@@ -1736,10 +1766,12 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                             cs += 1
                     # cs now points to the closing } (either if block or function).
                     # Insert after the } (or before if at very end of file).
-                    if cs + 1 < len(lines):
-                        lines.insert(cs + 1, ctrl_indent + cond_flush)
-                    else:
-                        lines.insert(cs, ctrl_indent + cond_flush)
+                    # cond_flush 可能包含多行 (用 \n 分隔), 逐行插入
+                    flush_lines = cond_flush.split("\n")
+                    insert_pos = cs + 1 if cs + 1 < len(lines) else cs
+                    for fl in flush_lines:
+                        lines.insert(insert_pos, ctrl_indent + fl)
+                        insert_pos += 1
             i += 1
 
     # Ensure sim_mem.h is included
