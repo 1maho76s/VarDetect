@@ -129,7 +129,8 @@ int ase_tcp_on_read_str(struct ase_tcp_port *tp, struct ase_str *str,
         (void)ase_calc_switch_proxy(tp, ase_tcp_port_read_on_proxy_switch_done);
     }
     ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "%s port %d send up str len %d",
-        get_protol_str(tp), tp->se->fd, len);
+         "forward in", get_protol_str(tp),
+         tp->se->fd, peer->se->fd,);
     EXCLUDE_START_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);
     ase_sink_write(tp->out, str, start, len);
     EXCLUDE_END_PERF_CYCLE_IN_SESSION(CYCLE_TCP_READ_DATA, sess_id);

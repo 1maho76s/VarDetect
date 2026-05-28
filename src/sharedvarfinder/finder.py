@@ -1123,15 +1123,35 @@ def _find_global_var_accesses_from_source(source: str, shared_var_names: set[str
     that clang missed due to unresolvable types. Uses SIM_FLUSH_TEMP."""
     accesses: list[VariableAccess] = []
     lines = source.splitlines()
-    
+
     all_vars = shared_var_names | shared_pointer_vars
-    
+
     # Patterns for detecting writes: var->member [=| compound_assign] value
     # 注意: 末尾的 =(?!=) 使用负前瞻排除 == (比较运算符)
     _ASSIGN_RE = re.compile(r'^\s*(\w+(?:(?:->|\.)\w+)+)\s*(\|=|\+=|-=|\*=|/=|%=|<<=|>>=|&=|\^=|=(?!=))')
-    
+
+    # Build set of line indices that are inside a return statement (should not be instrumented)
+    in_return_lines: set[int] = set()
+    in_return = False
+    paren_depth = 0
+    for line_idx, line in enumerate(lines, start=1):
+        stripped = line.strip()
+        if not in_return:
+            if stripped.startswith('return ') or stripped.startswith('return(') or stripped == 'return;':
+                in_return = True
+                paren_depth = 0
+        if in_return:
+            in_return_lines.add(line_idx)
+            paren_depth += line.count('(') - line.count(')')
+            if ';' in line:
+                in_return = False
+                paren_depth = 0
+
     for var_name in sorted(all_vars, key=len, reverse=True):
         for line_idx, line in enumerate(lines, start=1):
+            if line_idx in in_return_lines:
+                continue
+
             # Check for write: var->member = ... or var->member |= ...
             m = _ASSIGN_RE.match(line)
             if m:
@@ -1145,7 +1165,7 @@ def _find_global_var_accesses_from_source(source: str, shared_var_names: set[str
                         expression=lhs, root_name=var_name,
                         root_expression=lhs, use_temp=True,
                     ))
-            
+
             # Find all ->member chains (reads) starting with the var name.
             # Skip matches where the var name is preceded by '->' or '.'
             # (e.g. info->str->len should not match str->len)
@@ -1440,13 +1460,14 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
         # 必须同时满足:
         # 1. ctrl_idx >= 0  → 找到了控制流语句
         # 2. if 行不以 '{' 结尾 → 不是 K&R 风格
-        # 3. if 行不以 '&&' / '||' 结尾 → 条件表达式完整, 下一行是函数体。
+        # 3. if 行不以 '&&' / '||' / ',' / '(' 结尾 → 条件表达式完整, 下一行是函数体。
         #    ⚠ 如果以 &&/|| 结尾, 条件跨行了, 下一行是条件续行, 不能当裸 body!
+        #    ⚠ 如果以 , 或 ( 结尾, 函数调用参数跨行了, 同理不能当裸 body!
         # 4. prev_line 不是单独的 "{"
         # 5. next_line 不是 "{" 或 "}"
         if (ctrl_idx >= 0
                 and not lines[ctrl_idx].rstrip().endswith('{')
-                and not lines[ctrl_idx].rstrip().endswith(('&&', '||'))
+                and not lines[ctrl_idx].rstrip().endswith(('&&', '||', ',', '('))
                 and prev_line.strip() != "{"
                 and next_line.strip() not in ("{", "}")):
             # Wrap the bare body in braces and put the flush inside.
@@ -1492,6 +1513,27 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                    and not lines[insert_index].strip().startswith(('{', '}', 'if', 'for', 'while', 'SIM_FLUSH'))):
                 insert_index += 1
                 advanced_by_continuation = True
+            # 括号平衡检测: 从 access 所在行到当前 insert_index, 如果括号未闭合,
+            # 说明仍在多行函数调用/宏调用中, 继续向下直到括号平衡或遇到 ';'
+            paren_depth = 0
+            for scan_idx in range(line_num - 1, min(insert_index, len(lines))):
+                for ch in lines[scan_idx]:
+                    if ch == '(':
+                        paren_depth += 1
+                    elif ch == ')':
+                        paren_depth -= 1
+            if paren_depth > 0:
+                while insert_index < len(lines):
+                    scan_line = lines[insert_index]
+                    for ch in scan_line:
+                        if ch == '(':
+                            paren_depth += 1
+                        elif ch == ')':
+                            paren_depth -= 1
+                    insert_index += 1
+                    advanced_by_continuation = True
+                    if paren_depth <= 0 or ';' in scan_line:
+                        break
             next_line = lines[insert_index] if insert_index < len(lines) else ""
             next_indent = next_line[: len(next_line) - len(next_line.lstrip(" "))]
             # 下一行是单独的花括号 → flush 插入到花括号内部

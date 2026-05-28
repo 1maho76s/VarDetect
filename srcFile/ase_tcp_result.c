@@ -177,7 +177,8 @@ int ase_tcp_on_read_str(struct ase_tcp_port *tp, struct ase_str *str,
     }
     SIM_FLUSH_TEMP(&(tp->first_pkt_proced));
     ASE_TRACE_INFO(tp->sess_ctx, ASE_CATE_TCP_PORT, "%s port %d send up str len %d",
-        get_protol_str(tp), tp->se->fd, len);
+         "forward in", get_protol_str(tp),
+         tp->se->fd, peer->se->fd,);
     SIM_FLUSH_TEMP(&(tp->sess_ctx));
     SIM_FLUSH_INTER_PTR(&(tp->se));
     SIM_FLUSH_TEMP(&(tp->se->fd));
