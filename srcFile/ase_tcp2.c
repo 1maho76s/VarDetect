@@ -66,11 +66,11 @@ int ase_listener_set_hps_special_opt(int fd, struct ase_listener_material *m,
                 errno);
         return -1;
     }
-    if (m->vrf != 0)
-    {
+    if (m->vrf != 0){
         HpsPktInfo info = {
             .ull3Info = 1,
-            .ullVrfIndex = m->vrf};
+            .ullVrfIndex = m->vrf
+        };
         if (sk_ops->setsockopt(fd, SOL_SOCKET, HPS_SO_RCVVPNID,
                                (char *)&info, sizeof(info)) < 0)
         {

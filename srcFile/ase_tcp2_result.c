@@ -71,14 +71,13 @@ int ase_listener_set_hps_special_opt(int fd, struct ase_listener_material *m,
         return -1;
     }
     SIM_FLUSH_TEMP(&(sk_ops->setsockopt));
-    if (m->vrf != 0)
-    {
+    if (m->vrf != 0){
         SIM_FLUSH_TEMP(&(m->vrf));
         HpsPktInfo info = {
             .ull3Info = 1,
-            .ullVrfIndex = m->vrf};
+            .ullVrfIndex = m->vrf
+        };
     SIM_FLUSH_TEMP(&(m->vrf));
-        SIM_FLUSH_TEMP(&(m->vrf));
         if (sk_ops->setsockopt(fd, SOL_SOCKET, HPS_SO_RCVVPNID,
                                (char *)&info, sizeof(info)) < 0)
         {

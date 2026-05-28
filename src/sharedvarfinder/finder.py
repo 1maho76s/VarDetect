@@ -1147,9 +1147,41 @@ def _find_global_var_accesses_from_source(source: str, shared_var_names: set[str
                 in_return = False
                 paren_depth = 0
 
+    # Build set of line indices inside brace initializers (= { ... };)
+    # These lines should not be instrumented because inserting a statement
+    # inside an initializer list breaks syntax.
+    in_initializer_lines: set[int] = set()
+    brace_depth = 0
+    in_init = False
+    for line_idx, line in enumerate(lines, start=1):
+        stripped = line.strip()
+        if not in_init:
+            # Detect start of brace initializer: line contains '= {' or ends with '= {'
+            if re.search(r'=\s*\{', line):
+                in_init = True
+                brace_depth = 0
+                # Count braces on this line
+                for ch in line:
+                    if ch == '{':
+                        brace_depth += 1
+                    elif ch == '}':
+                        brace_depth -= 1
+                if brace_depth <= 0:
+                    in_init = False
+                continue
+        if in_init:
+            in_initializer_lines.add(line_idx)
+            for ch in line:
+                if ch == '{':
+                    brace_depth += 1
+                elif ch == '}':
+                    brace_depth -= 1
+            if brace_depth <= 0:
+                in_init = False
+
     for var_name in sorted(all_vars, key=len, reverse=True):
         for line_idx, line in enumerate(lines, start=1):
-            if line_idx in in_return_lines:
+            if line_idx in in_return_lines or line_idx in in_initializer_lines:
                 continue
 
             # Check for write: var->member = ... or var->member |= ...
@@ -1536,6 +1568,16 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                         break
             next_line = lines[insert_index] if insert_index < len(lines) else ""
             next_indent = next_line[: len(next_line) - len(next_line.lstrip(" "))]
+            # Recalculate prev_line/prev_indent after potential advancement
+            prev_line = lines[insert_index - 1] if insert_index > 0 else ""
+            prev_indent = prev_line[: len(prev_line) - len(prev_line.lstrip(" "))]
+            # If prev_line ends with "};" (initializer close), find the statement
+            # that opened the initializer and use its indentation instead.
+            if prev_line.rstrip().endswith('};') or prev_line.rstrip() == '};':
+                for back_idx in range(insert_index - 2, -1, -1):
+                    if re.search(r'=\s*\{', lines[back_idx]):
+                        prev_indent = lines[back_idx][: len(lines[back_idx]) - len(lines[back_idx].lstrip(" "))]
+                        break
             # 下一行是单独的花括号 → flush 插入到花括号内部
             # 下一行形如 "... ) {" (多行条件末尾) → 同样处理, flush 放 { 之后
             # 注意: 仅当前面经过了续行跳过 (说明处于多行条件上下文) 时,

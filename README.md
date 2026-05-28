@@ -1,6 +1,6 @@
 # SharedVarFinder
 
-适用于 C/C++ 代码的**共享变量检测**与 **SIM_FLUSH 插桩**工具。基于 Clang AST JSON dump 进行精准的共享变量识别，并自动在共享内存访问点插入 `SIM_FLUSH` / `SIM_FLUSH_TEMP` 调用。
+适用于 C/C++ 代码的**共享变量检测**与 **SIM_FLUSH 插桩**工具。基于 Clang AST JSON dump 进行精准的共享变量识别，并自动在共享内存访问点插入 `SIM_FLUSH` / `SIM_FLUSH_TEMP` / `SIM_FLUSH_INTER_PTR` 调用。
 
 ---
 
@@ -22,6 +22,7 @@
   - [多行 if 条件处理](#多行-if-条件处理)
   - [Post-if-flush](#post-if-flush)
   - [Temp Flush（源码级回退）](#temp-flush源码级回退)
+  - [Inter-ptr-flush（中间指针 flush）](#inter-ptr-flush中间指针-flush)
   - [Cacheline 合并](#cacheline-合并)
   - [位域绕过](#位域绕过)
 - [快速开始](#快速开始)
@@ -45,6 +46,7 @@
 |---------|--------|------|
 | `g_counter++;` | `g_counter++; SIM_FLUSH(&(g_counter));` | AST 确认的访问 |
 | `tp->rcv_bytes += len;` | `tp->rcv_bytes += len; SIM_FLUSH(&(tp->rcv_bytes));` | AST 确认的访问 |
+| `tp->pkt_stat->rcved += len;` | `tp->pkt_stat->rcved += len; SIM_FLUSH(&(...->rcved)); SIM_FLUSH_INTER_PTR(&(tp->pkt_stat));` | 中间指针也 flush |
 | `if (tp->state == RUNNING)` | `if (tp->state == RUNNING) { SIM_FLUSH_TEMP(&(tp->state)); ... }` | 函数未声明导致 RecoveryExpr，由 temp_flush 回退检测 |
 
 ---
@@ -112,11 +114,13 @@ Clang -ast-dump=json ──→ JSON AST
          │
          ├── 4. 去重 / cacheline 合并 / 位域过滤
          │
-         ├── 5. 逐行插入 SIM_FLUSH / SIM_FLUSH_TEMP
+         ├── 5. inter_ptr_flush 中间指针展开 (可选)  ──→ SIM_FLUSH_INTER_PTR
          │
-         ├── 6. else-if 链传播
+         ├── 6. 逐行插入 SIM_FLUSH / SIM_FLUSH_TEMP / SIM_FLUSH_INTER_PTR
          │
-         └── 7. post-if-flush (可选)
+         ├── 7. else-if 链传播
+         │
+         └── 8. post-if-flush (可选)
                     │
                     ▼
               插桩后的源码
@@ -160,10 +164,11 @@ instrument_code(source, ...)
     │       ├── walk()                             #   3b: AST 遍历 (RecoveryExpr 仅递归子节点)
     │       └── temp_flush 源码回退 (可选)          #   3c: 正则扫描未解析区域
     ├── 去重 & 合并                                 # 步骤4
-    ├── 逐行插入 SIM_FLUSH / SIM_FLUSH_TEMP         # 步骤5
-    ├── else-if 链传播                              # 步骤6
-    ├── post-if-flush (可选)                        # 步骤7
-    └── temp-flush 源码回退已整合到步骤3c            # (不再有独立步骤8)
+    ├── inter_ptr_flush 中间指针展开 (可选)          # 步骤5
+    ├── 逐行插入 SIM_FLUSH / SIM_FLUSH_TEMP / SIM_FLUSH_INTER_PTR  # 步骤6
+    ├── else-if 链传播                              # 步骤7
+    ├── post-if-flush (可选)                        # 步骤8
+    └── temp-flush 源码回退已整合到步骤3c            # (不再有独立步骤)
 ```
 
 #### 3. 数据结构
@@ -191,6 +196,7 @@ class VariableAccess:
     member_name: Optional[str] # 成员名
     member_offset: Optional[int] # 成员偏移量 (字节)
     use_temp: bool             # 使用 SIM_FLUSH_TEMP 还是 SIM_FLUSH
+    use_inter_ptr: bool        # 使用 SIM_FLUSH_INTER_PTR (中间指针读取)
 ```
 
 #### 4. 关键辅助函数
@@ -203,6 +209,7 @@ class VariableAccess:
 | `_is_source_node(node)` | 判断节点是否来自源文件（排除 include 文件） |
 | `_get_enclosing_end_line(ancestors, default)` | 向上查找 CallExpr/BinaryOperator 确定 flush 插入的结束行 |
 | `_find_global_var_accesses_from_source(...)` | 源码级正则回退：扫描 `ptr->member.field` 链和 `*ptr`，产生 SIM_FLUSH_TEMP |
+| `_expand_inter_ptr_prefixes(expr)` | 对 `a->b->c->d` 返回中间指针前缀列表 `['a->b', 'a->b->c']` |
 
 ### collect.py — 结构体收集器
 
@@ -328,6 +335,8 @@ ImplicitCastExpr/ParenExpr/CastExpr:
 按照 `end_line` 从大到小的顺序逐行插入。插入逻辑包括：
 - **裸函数体包裹**：当 `if/for/while` 后跟的是无花括号的单行语句时，自动包裹花括号并把 flush 放入
 - **跨行表达式续行跳过**：跳过 `,` `(` `&&` `||` 续行，避免 flush 插入到条件表达式内部
+- **括号平衡检测**：从 access 所在行到插入点计算括号深度，若 `(` 未闭合则继续向下扫描直到平衡或遇到 `;`，防止 flush 插入多行函数/宏调用中间
+- **return 语句跳过**：`temp_flush` 正则回退会跳过 `return` 语句内的所有行（从 `return` 到 `;`）
 - **`{` 和 `) {` 检测**：flush 正确放入花括号内部
 
 #### 阶段 C: else-if 链传播
@@ -411,6 +420,27 @@ SIM_FLUSH(&(tp->state));  // flush 移到 } 之后
 
 **去重机制**：源码回退检测到的访问会与 AST 路径已检测到的访问去重——同一 `(line, expression)` 或同一 `(end_line, expression)` 的重复访问会被过滤。
 
+### Inter-ptr-flush（中间指针 flush）
+
+**问题**：对于链式指针访问 `tp->pkt_stat->rcved += len`，工具只 flush 叶子表达式 `tp->pkt_stat->rcved`。但中间指针 `tp->pkt_stat` 本身也是共享内存中的一个值——如果指针过期，后续解引用可能指向错误地址。
+
+**解决**：启用 `--inter-ptr-flush` 后，对每个包含多级 `->` 的访问表达式，自动生成中间指针的 flush：
+
+```c
+tp->pkt_stat->rcved += len;
+SIM_FLUSH(&(tp->pkt_stat->rcved));       // 叶子写入
+SIM_FLUSH_INTER_PTR(&(tp->pkt_stat));    // 中间指针读取
+```
+
+**规则**：
+- 只在 `->` 处拆分（指针解引用），`.` 不拆分（结构体成员访问无独立指针读取）
+- 对 `a->b->c->d` 生成 `['a->b', 'a->b->c']` 两个中间前缀
+- 叶子表达式本身不重复（已有 SIM_FLUSH/SIM_FLUSH_TEMP）
+- 与已有访问按 `(end_line, expression)` 去重
+- 独立于 `--temp-flush`，可单独使用
+
+**实现**：`_expand_inter_ptr_prefixes(expr)` 函数扫描表达式中所有 `->` 的位置，对除最后一个 `->` 外的每个位置提取前缀。
+
 ### Cacheline 合并
 
 **目的**：减少 flush 调用次数，一次 flush 覆盖整个 64 字节 cacheline。
@@ -447,7 +477,8 @@ PYTHONPATH=src python3 -m sharedvarfinder.cli --instrument srcFile/ase_tcp.c \
     --post-if-flush \
     --bitfield-map srcFile/all_structs_bitfield.json \
     --struct-header srcFile/all_structs.h \
-    --temp-flush
+    --temp-flush \
+    --inter-ptr-flush
 
 # 输出: srcFile/ase_tcp_result.c
 ```
@@ -505,6 +536,7 @@ PYTHONPATH=src python3 -m sharedvarfinder srcFile/ --json
 | 参数 | 说明 |
 |------|------|
 | `--temp-flush` | 启用源码级正则扫描回退：对 Clang 无法解析的区域（RecoveryExpr）用正则检测共享变量访问，标记为 SIM_FLUSH_TEMP。不开启时这些区域不会被插桩 |
+| `--inter-ptr-flush` | 对链式 `->` 访问的中间指针生成 SIM_FLUSH_INTER_PTR。独立于 `--temp-flush`，可单独使用 |
 
 ---
 
@@ -525,7 +557,7 @@ PYTHONPATH=src python3 -m sharedvarfinder srcFile/ --json
 ### 插桩精度
 
 7. **宏展开**：宏定义中的共享变量可能被多次计数或漏计。
-8. **跨行表达式**：已修复 `&&`/`||` 续行问题，但极深度嵌套的跨行表达式可能存在边界情况。
+8. **跨行表达式**：已修复 `&&`/`||` 续行和多行函数/宏调用（括号平衡检测）问题。`return` 语句内不插桩。极深度嵌套的跨行表达式可能存在边界情况。
 9. **行号漂移**：大量插入 `SIM_FLUSH` 后，行号会偏移，后续插入使用动态更新的 `lines` 列表，但复杂场景下可能有偏差。
 
 ### 性能
