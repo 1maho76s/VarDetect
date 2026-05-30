@@ -85,6 +85,8 @@ int ase_listener_set_hps_special_opt(int fd, struct ase_listener_material *m,
     {
         no_syn_cookie = 1;
     }
+    if(!m->no_syn_cookie){
+    }
     ASE_INFO(ASE_CATE_LISTENER, "set socket fd %d opt no_syn_cookie %d.", fd, no_syn_cookie);
     if (no_syn_cookie == 1 &&
         sk_ops->setsockopt(fd, SOL_SOCKET, HPS_SO_NO_SYNCOOKIE, (void *)&no_syn_cookie, sizeof(int)) < 0)

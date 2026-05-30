@@ -172,3 +172,9 @@ struct ase_net_port {
         const struct ase_net_port_ops *ops;
 };
 
+/* source: bitfield_struct.h */
+struct ase_listener_material {
+    uint32_t vrf;
+        uint32_t no_syn_cookie : 1, reserve : 31;
+};
+

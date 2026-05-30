@@ -72,12 +72,11 @@ int ase_listener_set_hps_special_opt(int fd, struct ase_listener_material *m,
     }
     SIM_FLUSH_TEMP(&(sk_ops->setsockopt));
     if (m->vrf != 0){
-        SIM_FLUSH_TEMP(&(m->vrf));
         HpsPktInfo info = {
             .ull3Info = 1,
             .ullVrfIndex = m->vrf
         };
-    SIM_FLUSH_TEMP(&(m->vrf));
+        SIM_FLUSH(&(m->vrf));
         if (sk_ops->setsockopt(fd, SOL_SOCKET, HPS_SO_RCVVPNID,
                                (char *)&info, sizeof(info)) < 0)
         {
@@ -89,13 +88,17 @@ int ase_listener_set_hps_special_opt(int fd, struct ase_listener_material *m,
         }
         SIM_FLUSH_TEMP(&(sk_ops->setsockopt));
     }
+    SIM_FLUSH(&(m->vrf));
     int no_syn_cookie = 0;
     if (m->no_syn_cookie)
     {
-        SIM_FLUSH_TEMP(&(m->no_syn_cookie));
+        SIM_FLUSH(&(m->no_syn_cookie));
         no_syn_cookie = 1;
     }
-    SIM_FLUSH_TEMP(&(m->no_syn_cookie));
+    SIM_FLUSH(&(m->no_syn_cookie));
+    if(!m->no_syn_cookie){
+    }
+    SIM_FLUSH(&(m->no_syn_cookie));
     ASE_INFO(ASE_CATE_LISTENER, "set socket fd %d opt no_syn_cookie %d.", fd, no_syn_cookie);
     if (no_syn_cookie == 1 &&
         sk_ops->setsockopt(fd, SOL_SOCKET, HPS_SO_NO_SYNCOOKIE, (void *)&no_syn_cookie, sizeof(int)) < 0)
@@ -143,7 +146,7 @@ void ase_tcp_port_check_bypass(struct ase_tcp_port *tp)
     if (peer->waiting_bypass && ase_buf_empty(&peer->sndbuf))
     {
         SIM_FLUSH_TEMP(&(peer->waiting_bypass));
-        SIM_FLUSH_TEMP(&(peer->sndbuf));
+        SIM_FLUSH(&(peer->sndbuf));
         // 透明代理模式支持bypass，所以这里对代理模式的拦截删掉了
         // 显式代理的场景，ase_src 里拦截了，不会到这里
         if (ase_connection_forced_detect(tp->sess_ctx->conn))
@@ -197,5 +200,5 @@ void ase_tcp_port_check_bypass(struct ase_tcp_port *tp)
         SIM_FLUSH(&(peer->caps));
     }
     SIM_FLUSH_TEMP(&(peer->waiting_bypass));
-    SIM_FLUSH_TEMP(&(peer->sndbuf));
+    SIM_FLUSH(&(peer->sndbuf));
 }

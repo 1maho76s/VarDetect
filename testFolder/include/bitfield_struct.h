@@ -172,4 +172,10 @@ static inline void ase_net_port_set_force_close(struct ase_net_port *port, int o
     n = list_entry((item)->member.next, typeof(*item), member); \
     &((item)->member) != (list); item = n, n = list_entry((n)->member.next, typeof(*item), member))
 
+
+struct ase_listener_material {
+    uint32_t vrf;
+    uint32_t no_syn_cookie : 1, reserve : 31;
+};
+
 #endif // BITFIELD_STRUCT_H

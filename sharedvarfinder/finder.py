@@ -158,13 +158,14 @@ def _run_clang_ast_dump(source: str, filename: str, path: Optional[Path] = None,
             include_args = [f"-I{p}" for p in include_paths] + include_args
         struct_header_args = []
         if struct_header and os.path.isfile(struct_header):
-            struct_header_args = ["-include", struct_header]
+            struct_header_args = ["-include", "stdint.h", "-include", "stdbool.h", "-include", struct_header]
         result = subprocess.run(
             [
                 clang_path,
                 "-Xclang",
                 "-ast-dump=json",
                 "-fsyntax-only",
+                "-ferror-limit=0",
                 "-x",
                 language,
                 std_flag,
@@ -1566,6 +1567,27 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                     advanced_by_continuation = True
                     if paren_depth <= 0 or ';' in scan_line:
                         break
+            # 花括号平衡检测: 从 access 所在行到当前 insert_index, 如果花括号未闭合,
+            # 说明仍在多行初始化器/复合字面量中, 继续向下直到花括号平衡或遇到 '};'
+            brace_depth = 0
+            for scan_idx in range(line_num - 1, min(insert_index, len(lines))):
+                for ch in lines[scan_idx]:
+                    if ch == '{':
+                        brace_depth += 1
+                    elif ch == '}':
+                        brace_depth -= 1
+            if brace_depth > 0:
+                while insert_index < len(lines):
+                    scan_line = lines[insert_index]
+                    for ch in scan_line:
+                        if ch == '{':
+                            brace_depth += 1
+                        elif ch == '}':
+                            brace_depth -= 1
+                    insert_index += 1
+                    advanced_by_continuation = True
+                    if brace_depth <= 0 or scan_line.rstrip().endswith('};'):
+                        break
             next_line = lines[insert_index] if insert_index < len(lines) else ""
             next_indent = next_line[: len(next_line) - len(next_line.lstrip(" "))]
             # Recalculate prev_line/prev_indent after potential advancement
@@ -1590,7 +1612,11 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                 insert_index += 1
                 indent = next_indent + "    "
             elif next_line.strip().startswith(("}", "else", "case", "default")):
-                indent = prev_indent
+                # If prev_line ends with '{', we're inserting inside a block body
+                if prev_line.rstrip().endswith('{'):
+                    indent = prev_indent + "    "
+                else:
+                    indent = prev_indent
             elif next_line and next_indent != prev_indent:
                 indent = next_indent
             else:
@@ -1773,20 +1799,33 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
                             else:
                                 break
                         break
+                    elif re.search(r'=\s*\{', lines[if_scan]):
+                        # 跳过花括号初始化器块 (如 HpsPktInfo info = { ... };)
+                        init_depth = 0
+                        while if_scan < len(lines):
+                            for ch in lines[if_scan]:
+                                if ch == '{':
+                                    init_depth += 1
+                                elif ch == '}':
+                                    init_depth -= 1
+                            if_scan += 1
+                            if init_depth <= 0:
+                                break
                     elif s != "" and not s.startswith("//") and not s.startswith("/*") and not s.startswith("*") and s != "{":
                         # Non-empty, non-comment, non-SIM_FLUSH line → this is body code,
                         # not condition SIM_FLUSH. Stop looking.
                         break
-                    for ch in s:
-                        if ch == '{':
-                            depth += 1
-                        elif ch == '}':
-                            depth -= 1
-                    if_scan += 1
+                    else:
+                        for ch in s:
+                            if ch == '{':
+                                depth += 1
+                            elif ch == '}':
+                                depth -= 1
+                        if_scan += 1
                 if cond_flush:
                     # Trace the entire if/else-if/else chain to find the final closing }
                     depth = 1
-                    cs = if_scan + 1
+                    cs = if_scan
                     while cs < len(lines):
                         for ch in lines[cs].strip():
                             if ch == '{':
