@@ -71,12 +71,12 @@ int ase_listener_set_hps_special_opt(int fd, struct ase_listener_material *m,
         return -1;
     }
     SIM_FLUSH_TEMP(&(sk_ops->setsockopt));
-    if (m->vrf != 0){
+    if (m->vrf != 0)
+    {
+        SIM_FLUSH(&(m->vrf));
         HpsPktInfo info = {
             .ull3Info = 1,
-            .ullVrfIndex = m->vrf
-        };
-        SIM_FLUSH(&(m->vrf));
+            .ullVrfIndex = m->vrf};
         if (sk_ops->setsockopt(fd, SOL_SOCKET, HPS_SO_RCVVPNID,
                                (char *)&info, sizeof(info)) < 0)
         {
@@ -96,19 +96,64 @@ int ase_listener_set_hps_special_opt(int fd, struct ase_listener_material *m,
         no_syn_cookie = 1;
     }
     SIM_FLUSH(&(m->no_syn_cookie));
-    if(!m->no_syn_cookie){
+    if (!m->no_syn_cookie)
+    {
+        SIM_FLUSH(&(m->no_syn_cookie));
     }
     SIM_FLUSH(&(m->no_syn_cookie));
     ASE_INFO(ASE_CATE_LISTENER, "set socket fd %d opt no_syn_cookie %d.", fd, no_syn_cookie);
-    if (no_syn_cookie == 1 &&
+    if (no_syn_cookie ==
+            (src->close_state[1] >> ase_close_state_sent) &&
         sk_ops->setsockopt(fd, SOL_SOCKET, HPS_SO_NO_SYNCOOKIE, (void *)&no_syn_cookie, sizeof(int)) < 0)
     {
+        SIM_FLUSH_TEMP(&(src->close_state));
         SIM_FLUSH_TEMP(&(sk_ops->setsockopt));
         ASE_ERR(ASE_CATE_LISTENER, "failed to set socket opt no_syn_cookie! errno: %d\n!", errno);
     }
+    SIM_FLUSH_TEMP(&(src->close_state));
     SIM_FLUSH_TEMP(&(sk_ops->setsockopt));
+
+    src->close_state[1] |=
+        ((src->close_state[0] >> ase_close_state_recv) & ase_close_state_mask) << ase_close_state_sent;
+        SIM_FLUSH_TEMP(&(src->close_state));
+
 #endif
     return 0;
+}
+
+void ase_src_to_dst_task_close(struct ase_src *src, enum ase_close_type type)
+{
+    uint32_t ack = 0;
+
+    if (src->state > ase_src_state_running)
+    {
+        SIM_FLUSH_TEMP(&(src->state));
+        return;
+    }
+    SIM_FLUSH_TEMP(&(src->state));
+
+    if (type == ase_close_type_abort)
+    {
+        ASE_TRACE_ERROR(src->sess_ctx, ASE_CATE_SESSION, "Error: abort, src_close_session");
+        SIM_FLUSH_TEMP(&(src->sess_ctx));
+        ase_dfx_cnt_inc(ASE_DFX_ABORT_SESS);
+        ase_src_batch_reset(src);
+        return;
+    }
+
+    src->close_state[0] |= type << ase_close_state_recv;
+    SIM_FLUSH_TEMP(&(src->close_state));
+    if (((src->close_state[0] >> ase_close_state_recv) & ase_close_state_mask) ==
+        ((src->close_state[1] >> ase_close_state_sent) & ase_close_state_mask))
+    {
+        SIM_FLUSH_TEMP(&(src->close_state));
+        SIM_FLUSH_TEMP(&(src->close_state));
+        // all the received close events are sent, nothing need to be done
+        ase_src_task_close_check(src);
+        return;
+    }
+    SIM_FLUSH_TEMP(&(src->close_state));
+    SIM_FLUSH_TEMP(&(src->close_state));
 }
 
 void ase_tcp_port_check_bypass(struct ase_tcp_port *tp)
@@ -198,6 +243,9 @@ void ase_tcp_port_check_bypass(struct ase_tcp_port *tp)
         SIM_FLUSH(&(tp->caps));
         ase_sess_bypass_done(peer->caps);
         SIM_FLUSH(&(peer->caps));
+        ASE_INFO(ASE_CATE_SESSION, "Invalid, (tp->policy is cleared)");
+
+
     }
     SIM_FLUSH_TEMP(&(peer->waiting_bypass));
     SIM_FLUSH(&(peer->sndbuf));

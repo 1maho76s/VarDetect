@@ -471,14 +471,18 @@ python3 -m pip install -e .
 python3 src/sharedvarfinder/collect.py srcFile --all -o srcFile/all_structs
 
 # 2. 插桩单个文件
-PYTHONPATH=src python3 -m sharedvarfinder.cli --instrument srcFile/ase_tcp.c \
-    -I srcFile \
+# 2.1 --engine tokenize（默认）— 词法分析方案，使用 finder_tokenize.py
+#     --engine regex — 旧的正则匹配方案，使用 finder.py
+PYTHONPATH=src python3 -m sharedvarfinder.cli --instrument testFolder/testSrc/ase_tcp2.c \
+    -I testFolder/testSrc \
     --conservative-ptr \
     --post-if-flush \
-    --bitfield-map srcFile/all_structs_bitfield.json \
-    --struct-header srcFile/all_structs.h \
+    --bitfield-map testFolder/collectStructs/all_structs_bitfield.json \
+    --struct-header testFolder/collectStructs/all_structs.h \
     --temp-flush \
-    --inter-ptr-flush
+    --inter-ptr-flush \
+    -o testFolder/testResult \
+    --engine tokenize
 
 # 输出: srcFile/ase_tcp_result.c
 ```

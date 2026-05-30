@@ -51,6 +51,9 @@ void ase_tcp_port_post_event_check(struct ase_tcp_port *tp)
     // upper layer sents FIN, check if all data flushed, if yes, send FIN out
     if (ase_tcp_up_rcv_not_end_dn(tp->in, ase_close_type_read) &&
         (is_dn_port_close_write(tp->in) || tp->sndbuf.len == 0)) {
+        SIM_FLUSH_TEMP(&(tp->in));
+        SIM_FLUSH_TEMP(&(tp->in));
+        SIM_FLUSH_TEMP(&(tp->sndbuf.len));
         // if nothing to be sent and tp layer has closed read, then fnd FIN out
         set_dn_port_close_read_sent(tp->in);
         SIM_FLUSH(&(tp->in));
@@ -71,12 +74,12 @@ void ase_tcp_port_post_event_check(struct ase_tcp_port *tp)
         !is_dn_port_closed(tp->in)) {
         set_dn_port_closed(tp->in);
         SIM_FLUSH(&(tp->in));
+        SIM_FLUSH(&(tp->in));
+        SIM_FLUSH(&(tp->in));
+        SIM_FLUSH(&(tp->in));
         ase_tcp_port_set_dummy(tp);
     } else if (is_dn_port_close_read_rcvd(tp) &&
                !is_up_port_close_read_sent(tp)) {
-                   SIM_FLUSH(&(tp->in));
-                   SIM_FLUSH(&(tp->in));
-                   SIM_FLUSH(&(tp->in));
         tp->se->exp_evts |= ~SCHED_EVT_READ;
         SIM_FLUSH_INTER_PTR(&(tp->se));
         SIM_FLUSH_TEMP(&(tp->se->exp_evts));
@@ -95,10 +98,10 @@ void ase_tcp_port_post_event_check(struct ase_tcp_port *tp)
         // https://stackoverflow.com/questions/8848211/close-socket-directly-after-send-sendbuf
         set_dn_port_close_read_ack_rcvd(tp->caps);
         SIM_FLUSH(&(tp->caps));
+        SIM_FLUSH(&(tp->caps));
+        SIM_FLUSH(&(tp->caps));
+        SIM_FLUSH(&(tp->caps));
     }
-    SIM_FLUSH(&(tp->caps));
-    SIM_FLUSH(&(tp->caps));
-    SIM_FLUSH(&(tp->caps));
 
     // close_write_ack is always sent immediately when we recv close_write from
     // upper layer. so do not process it here
@@ -115,11 +118,14 @@ void ase_tcp_port_post_event_check(struct ase_tcp_port *tp)
     if (is_dn_port_close_write_rcvd(tp) && !ase_buf_empty(&tp->sndbuf)) {
         // can't send anymore, release buf
         drop_snd_buf_due2netio(tp);
+        SIM_FLUSH(&(tp->sndbuf));
     }
-    SIM_FLUSH(&(tp->sndbuf));
 
     if (tp->waiting_bypass && ase_buf_empty(tp->sndbuf) &&
         tp->state == ase_tcp_port_state_running) {
+        SIM_FLUSH_TEMP(&(tp->waiting_bypass));
+        SIM_FLUSH_TEMP(&(tp->sndbuf));
+        SIM_FLUSH_TEMP(&(tp->state));
         ase_tcp_port_check_bypass(tp);
     }
     SIM_FLUSH_TEMP(&(tp->waiting_bypass));
@@ -157,6 +163,7 @@ int ase_tcp_on_read_str(struct ase_tcp_port *tp, struct ase_str *str,
     }
 
     if (!tp->first_pkt_proced) {
+        SIM_FLUSH_TEMP(&(tp->first_pkt_proced));
         tp->first_pkt_proced = true;
         SIM_FLUSH_TEMP(&(tp->first_pkt_proced));
         (void)ase_calc_switch_proxy(tp, ase_tcp_port_read_on_proxy_switch_done);
@@ -189,7 +196,9 @@ void ase_tcp_port_task_flush_rcv_pkt(struct list_head *link)
     struct ase_xbuf_info *n;
     struct ase_xbuf_info *str;
     list_for_each_entry_safe(info, str, &sp->pkt_list, link) {
+        SIM_FLUSH_TEMP(&(sp->pkt_list));
         if (info->str != NULL) {
+            SIM_FLUSH_TEMP(&(info->str));
             ase_sink_write(sp->out, info->str, 0, info->str->len);
             SIM_FLUSH(&(sp->out));
             SIM_FLUSH_TEMP(&(info->str));
@@ -197,7 +206,6 @@ void ase_tcp_port_task_flush_rcv_pkt(struct list_head *link)
         }
         SIM_FLUSH_TEMP(&(info->str));
     }
-    SIM_FLUSH_TEMP(&(sp->pkt_list));
     sp->read_brake--;
     SIM_FLUSH_TEMP(&(sp->read_brake));
     uint32_t dn_recv = (sp->close_state[dn] >> ase_close_state_recv) & ase_close_state_mask;

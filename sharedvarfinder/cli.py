@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 from pathlib import Path
 
-from .finder import SharedVariable, find_shared_variables, dump_shared_variables, instrument_code
+from .models import SharedVariable
+from .utils import find_shared_variables, dump_shared_variables
+from .instrument import instrument_code
 
 
 def _format_variable(variable: SharedVariable) -> str:
@@ -46,6 +47,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--inter-ptr-flush", action="store_true", default=False,
         help="Insert SIM_FLUSH_INTER_PTR for intermediate pointer dereferences in chained accesses")
+    parser.add_argument(
+        "-o", "--output-dir", default=None,
+        help="Directory for instrumented output file (default: same directory as source)")
+    parser.add_argument(
+        "--engine", choices=["tokenize", "regex"], default="tokenize",
+        help="Fallback engine for source-level access detection: 'tokenize' (lexical analysis, default) or 'regex' (legacy pattern matching)")
     args = parser.parse_args(argv)
 
     if args.instrument:
@@ -61,8 +68,13 @@ def main(argv: list[str] | None = None) -> int:
         except OSError as e:
             print(f"Error reading file: {e}")
             return 1
-        instrumented = instrument_code(source, str(path), path, include_paths=args.include, conservative_ptr=args.conservative_ptr, post_if_flush=args.post_if_flush, bitfield_map_path=args.bitfield_map, struct_header_path=args.struct_header, temp_flush=args.temp_flush, inter_ptr_flush=args.inter_ptr_flush)
-        output_path = path.with_name(f"{path.stem}_result{path.suffix}")
+        instrumented = instrument_code(source, str(path), path, include_paths=args.include, conservative_ptr=args.conservative_ptr, post_if_flush=args.post_if_flush, bitfield_map_path=args.bitfield_map, struct_header_path=args.struct_header, temp_flush=args.temp_flush, inter_ptr_flush=args.inter_ptr_flush, engine=args.engine)
+        output_name = f"{path.stem}_result{path.suffix}"
+        if args.output_dir:
+            output_path = Path(args.output_dir) / output_name
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+        else:
+            output_path = path.with_name(output_name)
         try:
             output_path.write_text(instrumented, encoding="utf-8")
         except OSError as e:
