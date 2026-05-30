@@ -54,6 +54,17 @@
 ## 架构总览
 
 ```
+模块	职责	行数
+models.py	数据类 (SharedVariable, VariableAccess)	42
+clang_ast.py	Clang AST 执行与解析	89
+shared_vars.py	共享变量检测 (AST + 文本 fallback)	228
+access_detect.py	AST 变量访问检测 + 数据流分析	782
+source_fallback.py	源码级 fallback (tokenize + regex 双引擎)	414
+instrument.py	代码插桩 (flush 插入、括号平衡、post_if_flush)	694
+utils.py	文件遍历、JSON 导出	44
+cli.py	CLI 参数解析	101
+__init__.py	公共 API 导出	8
+
                     ┌──────────────┐
                     │   cli.py     │  命令行入口, 参数解析
                     └──────┬───────┘
