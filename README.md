@@ -479,12 +479,12 @@ python3 -m pip install -e .
 
 ```bash
 # 1. 收集结构体定义
-python3 src/sharedvarfinder/collect.py srcFile --all -o srcFile/all_structs
+python3 sharedvarfinder/collect_struct.py srcFile --all -o testFolder/collectStructs
 
 # 2. 插桩单个文件
 # 2.1 --engine tokenize（默认）— 词法分析方案，使用 finder_tokenize.py
 #     --engine regex — 旧的正则匹配方案，使用 finder.py
-PYTHONPATH=src python3 -m sharedvarfinder.cli --instrument testFolder/testSrc/ase_tcp2.c \
+PYTHONPATH=src python3 -m sharedvarfinder.cli --instrument testFolder/testSrc/ase_engine_mode_cfg.c \
     -I testFolder/testSrc \
     --conservative-ptr \
     --post-if-flush \

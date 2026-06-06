@@ -258,6 +258,10 @@ def instrument_code(source: str, filename: str = "<text>", path: Optional[Path] 
     inserts.sort(key=lambda x: x[0], reverse=True)
     for line_num, flush in inserts:
         insert_index = max(0, min(line_num, len(lines)))
+        # end_line 校验: 如果 end_line 指向 return 语句, flush 插在 return 之前
+        # (return 之后的代码不会执行)
+        if insert_index > 0 and re.match(r'\s*return\b', lines[insert_index - 1]):
+            insert_index -= 1
         prev_line = lines[insert_index - 1] if insert_index > 0 else ""
         next_line = lines[insert_index] if insert_index < len(lines) else ""
         prev_indent = prev_line[: len(prev_line) - len(prev_line.lstrip(" "))]

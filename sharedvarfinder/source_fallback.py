@@ -209,6 +209,18 @@ def _find_global_var_accesses_tokenize(source: str, shared_var_names: set[str], 
             if brace_depth <= 0:
                 in_init = False
 
+    # --- 构建函数体内行集合 (brace_depth > 0 的行) ---
+    in_function_lines: set[int] = set()
+    func_brace_depth = 0
+    for line_idx, line in enumerate(lines, start=1):
+        for ch in line:
+            if ch == '{':
+                func_brace_depth += 1
+            elif ch == '}':
+                func_brace_depth -= 1
+        if func_brace_depth > 0:
+            in_function_lines.add(line_idx)
+
     # --- 在 token 流上识别 member access 链 ---
     # 模式: IDENT (ARROW|DOT IDENT)+
     # 例: tp -> sess_ctx -> conn  产出表达式 "tp->sess_ctx->conn"
@@ -242,8 +254,8 @@ def _find_global_var_accesses_tokenize(source: str, shared_var_names: set[str], 
             expr_parts.append(member_tok.value)
             j += 2
 
-        # 至少需要一次 -> 或 . 访问
-        if len(expr_parts) < 3:
+        # 至少需要一次 -> 或 . 访问, 除非是 shared_var_names 中的直接共享变量引用
+        if len(expr_parts) < 3 and tok.value not in shared_var_names:
             i += 1
             continue
 
@@ -258,8 +270,8 @@ def _find_global_var_accesses_tokenize(source: str, shared_var_names: set[str], 
             if all_tokens[k].kind in ('LBRACE', 'RBRACE'):
                 break
 
-        # 跳过 return 语句和初始化器内部
-        if access_line in in_return_lines or access_line in in_initializer_lines:
+        # 跳过 return 语句、初始化器内部、函数体外部
+        if access_line in in_return_lines or access_line in in_initializer_lines or access_line not in in_function_lines:
             i = j
             continue
 
@@ -401,6 +413,27 @@ def _find_global_var_accesses_regex(source: str, shared_var_names: set[str], sha
                         end_line=stmt_end_line, is_write=False,
                         expression=expr, root_name=var_name,
                         root_expression=expr, use_temp=True,
+                    ))
+
+            # 检测共享变量本身的直接引用 (非成员访问)
+            if var_name in shared_var_names:
+                for m in re.finditer(r'\b' + re.escape(var_name) + r'\b', line):
+                    if m.start() in in_string:
+                        continue
+                    if m.start() > 0 and line[m.start() - 1] in ('>', '.'):
+                        continue
+                    # 跳过已被成员链匹配覆盖的位置
+                    col = m.start() + 1
+                    already = any(a.line == line_idx and a.column == col for a in accesses)
+                    if already:
+                        continue
+                    # 检测写操作: var_name = ...
+                    is_write = bool(re.match(r'\s*' + re.escape(var_name) + r'\s*(\|=|\+=|-=|\*=|/=|%=|<<=|>>=|&=|\^=|=(?!=))', line))
+                    accesses.append(VariableAccess(
+                        name=var_name, line=line_idx, column=col,
+                        end_line=stmt_end_line, is_write=is_write,
+                        expression=var_name, root_name=var_name,
+                        root_expression=var_name, use_temp=True,
                     ))
 
     return accesses

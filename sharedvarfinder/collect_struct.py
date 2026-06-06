@@ -20,7 +20,7 @@ def extract_structs_final(folder_path: str, output_file: str) -> None:
     with open(output_file, "w", encoding="utf-8") as outfile:
         for root, _, files in os.walk(folder_path):
             for file in files:
-                if file.endswith((".h", ".hpp", ".hxx")):
+                if file.endswith((".h", ".hpp", ".c")):
                     file_path = os.path.join(root, file)
                     content = None
 
@@ -195,7 +195,7 @@ def build_bitfield_map(folder_path: str, output_file: str) -> dict[str, dict[str
 
     for root, _, files in os.walk(folder_path):
         for file in files:
-            if not file.endswith((".h", ".hpp", ".hxx")):
+            if not file.endswith((".h", ".hpp", ".c")):
                 continue
             file_path = os.path.join(root, file)
             content = None
@@ -265,7 +265,7 @@ def build_struct_header(folder_path: str, output_file: str) -> None:
     
     for root, _, files in os.walk(folder_path):
         for file in files:
-            if not file.endswith((".h", ".hpp", ".hxx")):
+            if not file.endswith((".h", ".hpp", ".c")):
                 continue
             file_path = os.path.join(root, file)
             # Skip the output file itself to avoid self-inclusion

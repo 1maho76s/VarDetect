@@ -449,15 +449,18 @@ def _find_variable_accesses_from_ast(ast: dict[str, Any], shared_vars: set[str],
     def _add_access(name: str, line: int, col: int, end_line: int, expr: str, root_name: str, root_expression: str, struct_type: Optional[str] = None, member_name: Optional[str] = None, member_offset: Optional[int] = None, is_write: bool = False, use_temp: bool = False) -> None:
         if line <= 0 or end_line <= 0 or not expr.strip():
             return
-        # end_line 校验: 如果 end_line 所在行没有 ';', 向后找到 ';' 所在行
-        # 确保 flush 插在完整语句之后, 而非多行表达式中间
-        if end_line <= len(source_lines) and ';' not in source_lines[end_line - 1]:
-            for fwd in range(end_line, len(source_lines)):
-                if ';' in source_lines[fwd]:
-                    end_line = fwd + 1
-                    break
-                if source_lines[fwd].strip() in ('{', '}'):
-                    break
+        # end_line 校验: 如果 end_line 所在行没有 ';' 也不以 '{' 或 '}' 结尾,
+        # 向后找到 ';' 所在行, 确保 flush 插在完整语句之后。
+        # 以 '{' 结尾的行是控制流语句 (if/for/while), 不需要 ';'。
+        if end_line <= len(source_lines):
+            end_stripped = source_lines[end_line - 1].rstrip()
+            if ';' not in source_lines[end_line - 1] and not end_stripped.endswith(('{', '}')):
+                for fwd in range(end_line, len(source_lines)):
+                    if ';' in source_lines[fwd]:
+                        end_line = fwd + 1
+                        break
+                    if source_lines[fwd].strip() in ('{', '}'):
+                        break
         accesses.append(VariableAccess(name, line, col, end_line, is_write, expr, root_name, root_expression, struct_type, member_name, member_offset, use_temp))
 
     def _node_has_shared_reference(node: dict[str, Any], ancestors: Optional[list[dict[str, Any]]] = None) -> bool:

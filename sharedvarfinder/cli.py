@@ -70,6 +70,8 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         instrumented = instrument_code(source, str(path), path, include_paths=args.include, conservative_ptr=args.conservative_ptr, post_if_flush=args.post_if_flush, bitfield_map_path=args.bitfield_map, struct_header_path=args.struct_header, temp_flush=args.temp_flush, inter_ptr_flush=args.inter_ptr_flush, engine=args.engine)
         output_name = f"{path.stem}_result{path.suffix}"
+        if path.stem.endswith("_bak"):
+            output_name = f"{path.stem}{path.suffix}"
         if args.output_dir:
             output_path = Path(args.output_dir) / output_name
             output_path.parent.mkdir(parents=True, exist_ok=True)
